@@ -5,7 +5,7 @@ import TextEditorButton from 'flarum/common/components/TextEditorButton';
 import UploadModal from './components/UploadModal';
 import FileLibraryModal from './components/FileLibraryModal';
 
-app.initializers.add('mie-flarum-files', () => {
+app.initializers.add('alanqoq-mie-files', () => {
   extend(TextEditor.prototype, 'controlItems', function (items) {
     if (!app.session.user) return;
 

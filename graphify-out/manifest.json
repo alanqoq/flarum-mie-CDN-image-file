@@ -1,8 +1,8 @@
 {
   "composer.json": {
-    "mtime": 1786728921.1937895,
-    "ast_hash": "663d8b00c44205dc3608bfb5ed5ac3cb",
-    "semantic_hash": "663d8b00c44205dc3608bfb5ed5ac3cb"
+    "mtime": 1786805827.4156356,
+    "ast_hash": "3766d2639aed23159bb7b529fbc16561",
+    "semantic_hash": ""
   },
   "extend.php": {
     "mtime": 1786733246.721496,
@@ -45,14 +45,14 @@
     "semantic_hash": "2b02f7005c4d9ef6614a8c4cbb10685c"
   },
   "js/src/admin/index.js": {
-    "mtime": 1786731921.0640266,
-    "ast_hash": "f4362b1aa296aa02d6e139d694a774ca",
-    "semantic_hash": "f4362b1aa296aa02d6e139d694a774ca"
+    "mtime": 1786805909.780405,
+    "ast_hash": "0b3acacefa6e2e75235794c00a9609a3",
+    "semantic_hash": ""
   },
   "js/src/admin/permissions.js": {
-    "mtime": 1786731921.0650268,
-    "ast_hash": "2323905a0829923fd523c85478ca098a",
-    "semantic_hash": "2323905a0829923fd523c85478ca098a"
+    "mtime": 1786805827.418817,
+    "ast_hash": "6beb69f1e43a3d70db09317e31f5643e",
+    "semantic_hash": ""
   },
   "js/src/common/api.ts": {
     "mtime": 1786730517.3860972,
@@ -90,9 +90,9 @@
     "semantic_hash": "cebdd1c611583534a32618f641a1dd9f"
   },
   "js/src/forum/index.js": {
-    "mtime": 1786730181.969571,
-    "ast_hash": "e8c7d577451646cc6d928cc04991e97d",
-    "semantic_hash": "e8c7d577451646cc6d928cc04991e97d"
+    "mtime": 1786805827.4198682,
+    "ast_hash": "c0ac8c31e1dd6c9ceaa54dbd770d90f9",
+    "semantic_hash": ""
   },
   "js/tests/admin/categoryUtils.test.js": {
     "mtime": 1786730548.054336,
@@ -335,8 +335,8 @@
     "semantic_hash": "98b8942b2968707dd1709c12555c37b1"
   },
   "README.md": {
-    "mtime": 1786801959.7255156,
-    "ast_hash": "0521ca309e7fd282351c04f84b26daf5",
+    "mtime": 1786805827.4166927,
+    "ast_hash": "40b71321ba739c2c3cb1c8a9631c2302",
     "semantic_hash": ""
   },
   "locale/en.yml": {
@@ -352,6 +352,11 @@
   "docs/ARCHITECTURE.md": {
     "mtime": 1786802053.4405947,
     "ast_hash": "dda5240076818f6760832764e352c9e0",
+    "semantic_hash": ""
+  },
+  "js/tests/admin/initializer.test.js": {
+    "mtime": 1786805909.7824037,
+    "ast_hash": "35a15934f11f14fea4953c0c2b8d9bb2",
     "semantic_hash": ""
   }
 }

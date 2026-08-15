@@ -9,7 +9,7 @@ function add(permission, label, type, icon = 'far fa-file') {
 }
 
 export function registerPermissions(categories = []) {
-  app.registry.for('mie-files');
+  app.registry.for('alanqoq-mie-files');
   add('mie-files.view-other', app.translator.trans('mie-files.permissions.view_other'), 'moderate', 'fas fa-folder-open');
   add('mie-files.delete-other', app.translator.trans('mie-files.permissions.delete_other'), 'moderate', 'fas fa-trash');
   categories.forEach((category) => {
