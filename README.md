@@ -12,6 +12,44 @@ php flarum cache:clear
 
 本扩展兼容 Flarum `^2.0@beta`，并已在 `v2.0.0-rc.5` 上完成验证。
 
+## 更新扩展
+
+### 站点管理员
+
+在站点根目录执行以下命令。更新前请先备份数据库和 `storage/mie-files`；如果 Composer 提示依赖冲突，请先检查 Flarum 核心版本是否仍符合本扩展的兼容范围。
+
+```bash
+composer update alanqoq/mie-files --with-dependencies
+php flarum migrate
+php flarum cache:clear
+```
+
+更新完成后，在扩展设置页面确认存储配置、分类规则和未关联文件保留期限仍符合预期。已有文件不会因为扩展更新而自动迁移存储位置。
+
+### 开发者
+
+从最新的 `main` 创建工作分支后，安装锁定的 PHP 和 JavaScript 依赖：
+
+```bash
+git fetch origin
+git pull --ff-only origin main
+composer install
+
+cd js
+npm ci --ignore-scripts
+npm run build
+cd ..
+```
+
+修改 PHP、JavaScript、样式或迁移后，运行[开发检查](#开发检查)。前端构建会更新 `js/dist/`，结构变化后还要刷新已提交的 Graphify 图谱：
+
+```bash
+graphify update . --no-cluster
+graphify tree --root . --label "Mie Files for Flarum"
+```
+
+提交前检查 `git status` 和 `git diff --check`，确认源码、编译后的 `js/dist/`、迁移文件和 `graphify-out/` 中的变更都属于本次更新。
+
 ## 功能
 
 - 编辑器中会新增 `fas fa-file-upload` 和 `fas fa-photo-video` 两个图标按钮。
