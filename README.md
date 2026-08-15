@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-composer require mie/flarum-files:@dev
+composer require alanqoq/mie-files
 php flarum extension:enable mie-files
 php flarum cache:clear
 ```
