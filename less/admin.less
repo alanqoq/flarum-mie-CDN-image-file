@@ -62,12 +62,35 @@
   gap: 12px;
 }
 
+.MieFiles-rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 8px 12px;
+}
+
+.MieFiles-ruleHeader,
+.MieFiles-rules > .MieFiles-fieldError {
+  grid-column: 1 / -1;
+}
+
 .MieFiles-ruleRow {
   display: grid;
-  grid-template-columns: minmax(100px, 0.35fr) minmax(220px, 1fr) 38px;
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 32px;
+  gap: 6px;
   align-items: start;
-  margin-top: 8px;
+  min-width: 0;
+}
+
+.MieFiles-ruleRow .FormControl {
+  width: 100%;
+  min-width: 0;
+}
+
+.MieFiles-ruleRow .Button--icon {
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  padding: 0;
 }
 
 .MieFiles-fieldError,
@@ -144,8 +167,7 @@
 
 @media (max-width: 600px) {
   .MieFiles-tabs,
-  .MieFiles-fieldGrid,
-  .MieFiles-ruleRow {
+  .MieFiles-fieldGrid {
     grid-template-columns: 1fr;
   }
 
