@@ -11,9 +11,9 @@ final class StorageConfigService
     public function save(array $data, ?StorageConfig $storage = null): StorageConfig
     {
         $storage ??= new StorageConfig();
-        $name = strtolower(trim((string) ($data['name'] ?? $storage->name)));
+        $name = trim((string) ($data['name'] ?? $storage->name));
         $driver = (string) ($data['driver'] ?? $storage->driver ?? '');
-        if (!preg_match('/^[a-z0-9][a-z0-9_-]{0,63}$/', $name) || $driver !== 'dogecloud') {
+        if ($name === '' || mb_strlen($name) > 64 || preg_match('/[\p{Cc}]/u', $name) !== 0 || $driver !== 'dogecloud') {
             throw new \InvalidArgumentException('Storage name or driver is invalid.');
         }
 

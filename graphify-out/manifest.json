@@ -285,9 +285,9 @@
     "semantic_hash": "a466558bcde7cdb69425133b434a7969"
   },
   "src/Service/StorageConfigService.php": {
-    "mtime": 1786731060.3802884,
-    "ast_hash": "35d0073b61d94f51c8bddab380fecb56",
-    "semantic_hash": "35d0073b61d94f51c8bddab380fecb56"
+    "mtime": 1786907084.3198385,
+    "ast_hash": "26c3febeaafac75bb6fe23b02ddc18e2",
+    "semantic_hash": ""
   },
   "src/Service/StorageFactory.php": {
     "mtime": 1786729294.6024232,
@@ -305,9 +305,9 @@
     "semantic_hash": "11111dc0d0b623ad154eb889fcd17ab2"
   },
   "src/Validator/CategoryValidator.php": {
-    "mtime": 1786732897.1686707,
-    "ast_hash": "4ed3fb64db8c4c6bbf8fc928f24464eb",
-    "semantic_hash": "4ed3fb64db8c4c6bbf8fc928f24464eb"
+    "mtime": 1786907084.3210511,
+    "ast_hash": "c486054855b3037ecf481f16cac82d0d",
+    "semantic_hash": ""
   },
   "src/Validator/MimeValidator.php": {
     "mtime": 1786728224.21974,
@@ -320,9 +320,9 @@
     "semantic_hash": "d7cf5c78651e3eb5896a7a20ae7ed2be"
   },
   "tests/php/CategoryValidatorTest.php": {
-    "mtime": 1786732967.9020326,
-    "ast_hash": "15689825a116227abc8a368c34ab4889",
-    "semantic_hash": "15689825a116227abc8a368c34ab4889"
+    "mtime": 1786907084.32205,
+    "ast_hash": "3f9ecd45e62960fd34436ee70f60a5bc",
+    "semantic_hash": ""
   },
   "tests/php/Integration/ExtensionContractTest.php": {
     "mtime": 1786732629.4115236,
@@ -357,6 +357,11 @@
   "js/tests/admin/initializer.test.js": {
     "mtime": 1786864882.7664614,
     "ast_hash": "7d638fb3165c0cc582530499833bd950",
+    "semantic_hash": ""
+  },
+  "tests/php/StorageConfigServiceTest.php": {
+    "mtime": 1786907450.423691,
+    "ast_hash": "904293ac8ab8db2c5e3761c70d520d4f",
     "semantic_hash": ""
   }
 }

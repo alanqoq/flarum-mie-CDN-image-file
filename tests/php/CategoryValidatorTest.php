@@ -32,4 +32,14 @@ final class CategoryValidatorTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         CategoryValidator::validate($category, null, []);
     }
+
+    public function testUnicodeStorageNameIsPreserved(): void
+    {
+        $category = CategoryDefaults::TEMPLATES['images'];
+        $category['storageName'] = '多吉云';
+
+        $validated = CategoryValidator::validate($category, null, []);
+
+        self::assertSame('多吉云', $validated['storage_name']);
+    }
 }

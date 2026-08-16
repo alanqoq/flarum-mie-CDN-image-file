@@ -2852,6 +2852,14 @@
       "_origin": "ast"
     },
     {
+      "id": "src_validator_categoryvalidator_categoryvalidator_storagename",
+      "label": ".storageName()",
+      "file_type": "code",
+      "source_file": "src/Validator/CategoryValidator.php",
+      "source_location": "L102",
+      "_origin": "ast"
+    },
+    {
       "id": "src_validator_mimevalidator",
       "label": "MimeValidator.php",
       "file_type": "code",
@@ -2956,6 +2964,14 @@
       "_origin": "ast"
     },
     {
+      "id": "tests_php_categoryvalidatortest_categoryvalidatortest_testunicodestoragenameispreserved",
+      "label": ".testUnicodeStorageNameIsPreserved()",
+      "file_type": "code",
+      "source_file": "tests/php/CategoryValidatorTest.php",
+      "source_location": "L36",
+      "_origin": "ast"
+    },
+    {
       "id": "tests_php_integration_extensioncontracttest",
       "label": "ExtensionContractTest.php",
       "file_type": "code",
@@ -3025,6 +3041,46 @@
       "file_type": "code",
       "source_file": "tests/php/MimeValidatorTest.php",
       "source_location": "L17",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_php_storageconfigservicetest",
+      "label": "StorageConfigServiceTest.php",
+      "file_type": "code",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_php_storageconfigservicetest_storageconfigservicetest",
+      "label": "StorageConfigServiceTest",
+      "file_type": "code",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L10",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_php_storageconfigservicetest_storageconfigservicetest_testunicodestoragenameissavedunchanged",
+      "label": ".testUnicodeStorageNameIsSavedUnchanged()",
+      "file_type": "code",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L12",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_php_storageconfigservicetest_storageconfigservicetest_testinvalidstoragenameordriverisrejected",
+      "label": ".testInvalidStorageNameOrDriverIsRejected()",
+      "file_type": "code",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L33",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_php_storageconfigservicetest_storageconfigservicetest_service",
+      "label": ".service()",
+      "file_type": "code",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L45",
       "_origin": "ast"
     },
     {
@@ -10787,6 +10843,16 @@
       "_origin": "ast"
     },
     {
+      "source": "src_validator_categoryvalidator_categoryvalidator",
+      "target": "src_validator_categoryvalidator_categoryvalidator_storagename",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Validator/CategoryValidator.php",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
       "source": "src_validator_mimevalidator",
       "target": "src_validator_mimevalidator_mimevalidator",
       "relation": "contains",
@@ -10958,6 +11024,16 @@
       "confidence": "EXTRACTED",
       "source_file": "tests/php/CategoryValidatorTest.php",
       "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_categoryvalidatortest_categoryvalidatortest",
+      "target": "tests_php_categoryvalidatortest_categoryvalidatortest_testunicodestoragenameispreserved",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/CategoryValidatorTest.php",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -11147,6 +11223,133 @@
       "confidence": "EXTRACTED",
       "source_file": "tests/php/MimeValidatorTest.php",
       "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest",
+      "target": "storageconfig",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest",
+      "target": "credentialcipher",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest",
+      "target": "src_service_storageconfigservice_storageconfigservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest",
+      "target": "phpunit_framework_testcase",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest",
+      "target": "tests_php_storageconfigservicetest_storageconfigservicetest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest_storageconfigservicetest",
+      "target": "phpunit_framework_testcase",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest_storageconfigservicetest",
+      "target": "tests_php_storageconfigservicetest_storageconfigservicetest_testunicodestoragenameissavedunchanged",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest_storageconfigservicetest",
+      "target": "tests_php_storageconfigservicetest_storageconfigservicetest_testinvalidstoragenameordriverisrejected",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest_storageconfigservicetest",
+      "target": "tests_php_storageconfigservicetest_storageconfigservicetest_service",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest_storageconfigservicetest_service",
+      "target": "src_service_storageconfigservice_storageconfigservice",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L45",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest_storageconfigservicetest_testunicodestoragenameissavedunchanged",
+      "target": "tests_php_storageconfigservicetest_storageconfigservicetest_service",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_storageconfigservicetest_storageconfigservicetest_testinvalidstoragenameordriverisrejected",
+      "target": "tests_php_storageconfigservicetest_storageconfigservicetest_service",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/php/StorageConfigServiceTest.php",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -12194,6 +12397,18 @@
       "confidence_score": 0.8,
       "source_file": "tests/php/CategoryValidatorTest.php",
       "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_php_categoryvalidatortest_categoryvalidatortest_testunicodestoragenameispreserved",
+      "target": "src_validator_categoryvalidator_categoryvalidator",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/php/CategoryValidatorTest.php",
+      "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast"
     },

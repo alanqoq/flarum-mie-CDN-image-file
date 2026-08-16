@@ -19,7 +19,7 @@ final class CategoryValidator
         $slug = self::slug((string) $data['slug'], 'slug');
         $permissionName = self::slug((string) $data['permissionName'], 'permission name');
         $name = trim((string) $data['name']);
-        $storageName = self::slug((string) $data['storageName'], 'storage name');
+        $storageName = self::storageName((string) $data['storageName']);
         $template = (string) $data['insertTemplate'];
         $maxSizeMb = filter_var($data['maxSizeMb'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 10240]]);
 
@@ -95,6 +95,15 @@ final class CategoryValidator
         $value = strtolower(trim($value));
         if (!preg_match('/^[a-z0-9][a-z0-9_-]{0,63}$/', $value)) {
             throw new \InvalidArgumentException("Invalid {$label}.");
+        }
+        return $value;
+    }
+
+    private static function storageName(string $value): string
+    {
+        $value = trim($value);
+        if ($value === '' || mb_strlen($value) > 64 || preg_match('/[\p{Cc}]/u', $value) !== 0) {
+            throw new \InvalidArgumentException('Invalid storage name.');
         }
         return $value;
     }
