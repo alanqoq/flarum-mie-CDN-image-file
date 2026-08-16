@@ -37,7 +37,18 @@ function bootAdminBundle() {
       requests.push(options);
       return Promise.resolve({ data: [{ permissionName: 'images' }] });
     },
-    translator: { trans: (key) => key },
+    translator: {
+      trans: (key, params = {}) => {
+        const labels = {
+          'mie-files.permissions.view_other': 'View other users\' file libraries',
+          'mie-files.permissions.delete_other': 'Delete files in other users\' libraries',
+          'mie-files.permissions.category_view': `File category-${params.name}-view`,
+          'mie-files.permissions.category_download': `File category-${params.name}-download`,
+          'mie-files.permissions.category_upload': `File category-${params.name}-upload`,
+        };
+        return labels[key] || key;
+      },
+    },
   };
   const Component = class {};
   const Modal = class {};
@@ -73,13 +84,21 @@ describe('admin initializer', () => {
     expect(EXTENSION_ID).toBe('alanqoq-mie-files');
     expect(() => state.initializers.get(EXTENSION_ID)()).not.toThrow();
     expect(state.settings.map((item) => item.extension)).toEqual([EXTENSION_ID]);
-    expect(state.permissions.map((item) => item.extension)).toEqual([EXTENSION_ID, EXTENSION_ID]);
+    expect(state.permissions).toHaveLength(0);
 
     state.app.forum = { attribute: (name) => (name === 'apiUrl' ? '/api' : undefined) };
     state.beforeMount.forEach((callback) => callback());
+    expect(state.permissions).toHaveLength(2);
     await Promise.resolve();
 
     expect(state.requests).toEqual([{ method: 'GET', url: '/api/mie/categories' }]);
     expect(state.permissions).toHaveLength(5);
+    expect(state.permissions.map(({ permission }) => permission.label)).toEqual([
+      'View other users\' file libraries',
+      'Delete files in other users\' libraries',
+      'File category-images-view',
+      'File category-images-download',
+      'File category-images-upload',
+    ]);
   });
 });

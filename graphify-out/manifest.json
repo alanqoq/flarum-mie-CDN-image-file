@@ -45,8 +45,8 @@
     "semantic_hash": "2b02f7005c4d9ef6614a8c4cbb10685c"
   },
   "js/src/admin/index.js": {
-    "mtime": 1786805909.780405,
-    "ast_hash": "0b3acacefa6e2e75235794c00a9609a3",
+    "mtime": 1786823685.2487624,
+    "ast_hash": "65f2659225de8050723a99c4d15677f3",
     "semantic_hash": ""
   },
   "js/src/admin/permissions.js": {
@@ -335,8 +335,8 @@
     "semantic_hash": "98b8942b2968707dd1709c12555c37b1"
   },
   "README.md": {
-    "mtime": 1786805827.4166927,
-    "ast_hash": "40b71321ba739c2c3cb1c8a9631c2302",
+    "mtime": 1786822227.7759426,
+    "ast_hash": "11235d347899208845cf629a5061eeb1",
     "semantic_hash": ""
   },
   "locale/en.yml": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "js/tests/admin/initializer.test.js": {
-    "mtime": 1786805909.7824037,
-    "ast_hash": "35a15934f11f14fea4953c0c2b8d9bb2",
+    "mtime": 1786823685.250764,
+    "ast_hash": "0acd38e80c71b7465970eebfb588d4e3",
     "semantic_hash": ""
   }
 }

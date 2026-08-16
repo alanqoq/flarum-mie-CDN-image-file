@@ -3052,11 +3052,35 @@
       "_origin": "ast"
     },
     {
+      "id": "readme_更新扩展",
+      "label": "更新扩展",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L15",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_站点管理员",
+      "label": "站点管理员",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L17",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_开发者",
+      "label": "开发者",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "_origin": "ast"
+    },
+    {
       "id": "readme_功能",
       "label": "功能",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L15",
+      "source_location": "L53",
       "_origin": "ast"
     },
     {
@@ -3064,7 +3088,7 @@
       "label": "存储",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L24",
+      "source_location": "L62",
       "_origin": "ast"
     },
     {
@@ -3072,7 +3096,7 @@
       "label": "清理未关联文件",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L33",
+      "source_location": "L71",
       "_origin": "ast"
     },
     {
@@ -3080,7 +3104,7 @@
       "label": "开发检查",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L43",
+      "source_location": "L81",
       "_origin": "ast"
     },
     {
@@ -3088,7 +3112,7 @@
       "label": "架构",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L63",
+      "source_location": "L101",
       "_origin": "ast"
     },
     {
@@ -11148,11 +11172,41 @@
     },
     {
       "source": "readme_mie_files_flarum_2_x_私有文件库",
-      "target": "readme_功能",
+      "target": "readme_更新扩展",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
       "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_更新扩展",
+      "target": "readme_站点管理员",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_更新扩展",
+      "target": "readme_开发者",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_mie_files_flarum_2_x_私有文件库",
+      "target": "readme_功能",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -11162,7 +11216,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L24",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -11172,7 +11226,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L33",
+      "source_location": "L71",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -11182,7 +11236,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L43",
+      "source_location": "L81",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -11192,7 +11246,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L63",
+      "source_location": "L101",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -11202,7 +11256,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L65",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast"
     },
