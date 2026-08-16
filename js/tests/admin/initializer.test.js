@@ -40,11 +40,11 @@ function bootAdminBundle() {
     translator: {
       trans: (key, params = {}) => {
         const labels = {
-          'mie-files.permissions.view_other': 'View other users\' file libraries',
-          'mie-files.permissions.delete_other': 'Delete files in other users\' libraries',
-          'mie-files.permissions.category_view': `File category-${params.name}-view`,
-          'mie-files.permissions.category_download': `File category-${params.name}-download`,
-          'mie-files.permissions.category_upload': `File category-${params.name}-upload`,
+          'mie-files.admin.permissions.view_other': 'View other users\' file libraries',
+          'mie-files.admin.permissions.delete_other': 'Delete files in other users\' libraries',
+          'mie-files.admin.permissions.category_view': `File category-${params.name}-view`,
+          'mie-files.admin.permissions.category_download': `File category-${params.name}-download`,
+          'mie-files.admin.permissions.category_upload': `File category-${params.name}-upload`,
         };
         return labels[key] || key;
       },

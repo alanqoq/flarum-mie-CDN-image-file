@@ -10,13 +10,13 @@ function add(permission, label, type, icon = 'far fa-file') {
 
 export function registerPermissions(categories = []) {
   app.registry.for('alanqoq-mie-files');
-  add('mie-files.view-other', app.translator.trans('mie-files.permissions.view_other'), 'moderate', 'fas fa-folder-open');
-  add('mie-files.delete-other', app.translator.trans('mie-files.permissions.delete_other'), 'moderate', 'fas fa-trash');
+  add('mie-files.view-other', app.translator.trans('mie-files.admin.permissions.view_other'), 'moderate', 'fas fa-folder-open');
+  add('mie-files.delete-other', app.translator.trans('mie-files.admin.permissions.delete_other'), 'moderate', 'fas fa-trash');
   categories.forEach((category) => {
     const name = category.permissionName;
     if (!name) return;
-    add(`mie-files.category.${name}.view`, app.translator.trans('mie-files.permissions.category_view', { name }), 'view');
-    add(`mie-files.category.${name}.download`, app.translator.trans('mie-files.permissions.category_download', { name }), 'view');
-    add(`mie-files.category.${name}.upload`, app.translator.trans('mie-files.permissions.category_upload', { name }), 'start', 'fas fa-file-upload');
+    add(`mie-files.category.${name}.view`, app.translator.trans('mie-files.admin.permissions.category_view', { name }), 'view');
+    add(`mie-files.category.${name}.download`, app.translator.trans('mie-files.admin.permissions.category_download', { name }), 'view');
+    add(`mie-files.category.${name}.upload`, app.translator.trans('mie-files.admin.permissions.category_upload', { name }), 'start', 'fas fa-file-upload');
   });
 }

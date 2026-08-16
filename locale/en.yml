@@ -71,6 +71,12 @@ mie-files:
     mime_source: Result source
     mime_detected: MIME result
     mime_confirm: Inspect
+    permissions:
+      view_other: View other users' file libraries
+      delete_other: Delete files in other users' libraries
+      category_view: "File category-{name}-view"
+      category_download: "File category-{name}-download"
+      category_upload: "File category-{name}-upload"
   forum:
     upload: Upload files
     library: File library
@@ -99,9 +105,3 @@ mie-files:
     delete_confirm_title: Delete selected files
     delete_confirm_text: "Delete {count} selected files? Stored objects will also be removed."
     unavailable: File unavailable
-  permissions:
-    view_other: View other users' file libraries
-    delete_other: Delete files in other users' libraries
-    category_view: "File category-{name}-view"
-    category_download: "File category-{name}-download"
-    category_upload: "File category-{name}-upload"

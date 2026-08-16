@@ -71,6 +71,12 @@ mie-files:
     mime_source: 结果来源
     mime_detected: MIME 结果
     mime_confirm: 检测
+    permissions:
+      view_other: 查看其他用户文件库内容
+      delete_other: 删除其他用户文件库内容
+      category_view: "文件分类-{name}-查看"
+      category_download: "文件分类-{name}-下载"
+      category_upload: "文件分类-{name}-上传"
   forum:
     upload: 上传文件
     library: 文件库
@@ -99,9 +105,3 @@ mie-files:
     delete_confirm_title: 删除已选文件
     delete_confirm_text: "确认删除已选的 {count} 个文件吗？储存对象也会被删除。"
     unavailable: 文件不可用
-  permissions:
-    view_other: 查看其他用户文件库内容
-    delete_other: 删除其他用户文件库内容
-    category_view: "文件分类-{name}-查看"
-    category_download: "文件分类-{name}-下载"
-    category_upload: "文件分类-{name}-上传"

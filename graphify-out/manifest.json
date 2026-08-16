@@ -50,8 +50,8 @@
     "semantic_hash": ""
   },
   "js/src/admin/permissions.js": {
-    "mtime": 1786805827.418817,
-    "ast_hash": "6beb69f1e43a3d70db09317e31f5643e",
+    "mtime": 1786864882.753914,
+    "ast_hash": "0591c7ba477cb40e6309abb51821fde7",
     "semantic_hash": ""
   },
   "js/src/common/api.ts": {
@@ -340,13 +340,13 @@
     "semantic_hash": ""
   },
   "locale/en.yml": {
-    "mtime": 1786731077.3922749,
-    "ast_hash": "332fb9b331e9e05847494e6c0113972f",
+    "mtime": 1786864882.7584286,
+    "ast_hash": "0a64daa44c24a17948f6a018f023b352",
     "semantic_hash": ""
   },
   "locale/zh.yml": {
-    "mtime": 1786731077.3932748,
-    "ast_hash": "493960400d5f66951d2854554c64fbbd",
+    "mtime": 1786864882.7609367,
+    "ast_hash": "eebe3c1b49defa14f1df0ad0638dd1b6",
     "semantic_hash": ""
   },
   "docs/ARCHITECTURE.md": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "js/tests/admin/initializer.test.js": {
-    "mtime": 1786823685.250764,
-    "ast_hash": "0acd38e80c71b7465970eebfb588d4e3",
+    "mtime": 1786864882.7664614,
+    "ast_hash": "7d638fb3165c0cc582530499833bd950",
     "semantic_hash": ""
   }
 }
