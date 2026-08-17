@@ -22,6 +22,10 @@ return [
     (new Extend\Frontend('forum'))->js(__DIR__.'/js/dist/forum.js')->css(__DIR__.'/less/forum.less'),
     (new Extend\Frontend('admin'))->js(__DIR__.'/js/dist/admin.js')->css(__DIR__.'/less/admin.less'),
     (new Extend\Locales(__DIR__.'/locale')),
+    // Keep legacy posts readable until their stored marker is removed by the migration.
+    (new Extend\Formatter())->render(function (\s9e\TextFormatter\Renderer $renderer, mixed $context, string $xml): string {
+        return preg_replace('~(?:<br\s*/?>\s*)?&lt;!--\s*mie-file:[a-f0-9]{48}\s*--&gt;~', '', $xml) ?? $xml;
+    }),
     (new Extend\Routes('api'))
         ->get('/mie/files', 'mie-files.index', FileController::class)
         ->post('/mie/files', 'mie-files.upload', FileController::class)

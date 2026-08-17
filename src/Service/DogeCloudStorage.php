@@ -13,6 +13,7 @@ final class DogeCloudStorage implements Storage
         private string $bucket,
         string $accessKey,
         string $secretKey,
+        string $sessionToken,
         private ?string $publicBaseUrl = null,
         private string $region = 'auto'
     ) {
@@ -21,7 +22,7 @@ final class DogeCloudStorage implements Storage
             'region' => $this->region ?: 'auto',
             'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => false,
-            'credentials' => ['key' => $accessKey, 'secret' => $secretKey],
+            'credentials' => ['key' => $accessKey, 'secret' => $secretKey, 'token' => $sessionToken],
         ]);
     }
 

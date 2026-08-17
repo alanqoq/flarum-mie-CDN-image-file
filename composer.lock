@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5cd25755a5d826cc1ebe2cf7ae9890e2",
+    "content-hash": "a9925830be0d84139050562b98dd0406",
     "packages": [
         {
             "name": "asispts/http-accept",
@@ -11160,6 +11160,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^8.3",
+        "ext-curl": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",
         "ext-mbstring": "*"

@@ -43,17 +43,17 @@ mie-files:
     template_markdown_image: Markdown 图片模板
     template_bbcode_image: BBCode 图片模板
     storage_methods: 储存方式
-    storage_help: 本地储存始终可用。多吉云可选择 Flarum 中转传出，或配置公开访问链接。
+    storage_help: 本地储存始终可用。多吉云永久密钥只在服务端换取短期 S3 凭据；可选择 Flarum 中转传出，或配置公开访问链接。
     add_storage: 新增储存方式
     storage_modal_title: 多吉云云储存
-    storage_accessKey: AccessKeyId
-    storage_secretKey: AccessKeySecret
-    storage_bucket: Bucket
-    storage_endpoint: Endpoint
+    storage_accessKey: 多吉云 AccessKey
+    storage_secretKey: 多吉云 SecretKey
+    storage_bucket: 存储空间名称或 SDK Bucket
+    storage_endpoint: SDK Endpoint
     storage_region: Region
     storage_publicBaseUrl: 访问链接
-    secret_unchanged: 留空将保持已加密保存的密钥不变。
-    endpoint_unchanged: 留空将保持已保存的 Endpoint 不变。
+    secret_unchanged: 留空将保持已加密保存的多吉云 SecretKey 不变。
+    endpoint_unchanged: 留空将保持已保存的 SDK Endpoint 不变。
     delivery_proxy: Flarum 中转
     delivery_direct: 公开直链
     direct_warning_title: 直链模式限制

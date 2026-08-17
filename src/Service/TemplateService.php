@@ -31,7 +31,7 @@ final class TemplateService
             default => throw new \RuntimeException('Unknown insertion template.'),
         };
 
-        return ['markup' => $markup."\n<!-- mie-file:{$file->public_token} -->", 'url' => $url];
+        return ['markup' => $markup, 'url' => $url];
     }
 
     private static function humanSize(int $bytes): string

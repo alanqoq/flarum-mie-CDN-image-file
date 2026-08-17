@@ -14,6 +14,8 @@ use Flarum\Database\AbstractModel;
  * @property string|null $region
  * @property string|null $access_key_ciphertext
  * @property string|null $secret_key_ciphertext
+ * @property string|null $doge_temporary_credentials_ciphertext
+ * @property int|null $doge_temporary_credentials_expires_at
  * @property string|null $public_base_url
  * @property bool $direct_delivery_confirmed
  */
@@ -25,5 +27,10 @@ class StorageConfig extends AbstractModel
         'enabled' => 'boolean',
         'direct_delivery_confirmed' => 'boolean',
     ];
-    protected $hidden = ['access_key_ciphertext', 'secret_key_ciphertext'];
+    protected $hidden = [
+        'access_key_ciphertext',
+        'secret_key_ciphertext',
+        'doge_temporary_credentials_ciphertext',
+        'doge_temporary_credentials_expires_at',
+    ];
 }

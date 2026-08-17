@@ -42,18 +42,18 @@ mie-files:
     template_markdown_image: Markdown image
     template_bbcode_image: BBCode image
     storage_methods: Storage methods
-    storage_help: Local storage is always available. DogeCloud can use Flarum proxy delivery or a configured public base URL.
+    storage_help: Local storage is always available. DogeCloud API keys are exchanged server-side for short-lived S3 credentials; Flarum can use proxy delivery or a configured public base URL.
     add_storage: Add storage
     storage_modal_title: DogeCloud storage
     storage_config_name: Configuration name
-    storage_accessKey: AccessKeyId
-    storage_secretKey: AccessKeySecret
-    storage_bucket: Bucket
-    storage_endpoint: Endpoint
+    storage_accessKey: DogeCloud AccessKey
+    storage_secretKey: DogeCloud SecretKey
+    storage_bucket: Storage space or S3 Bucket
+    storage_endpoint: S3 Endpoint
     storage_region: Region
     storage_publicBaseUrl: Public base URL
-    secret_unchanged: Leave blank to keep the saved encrypted secret.
-    endpoint_unchanged: Leave blank to keep the saved endpoint.
+    secret_unchanged: Leave blank to keep the saved encrypted DogeCloud SecretKey.
+    endpoint_unchanged: Leave blank to keep the saved S3 endpoint.
     delivery_proxy: Flarum proxy
     delivery_direct: Public direct URL
     direct_warning_title: Direct delivery limitations

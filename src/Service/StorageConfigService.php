@@ -27,12 +27,14 @@ final class StorageConfigService
                 throw new \InvalidArgumentException('Direct delivery must be explicitly confirmed.');
             }
         }
+        $storageTargetChanged = false;
         foreach (['endpoint', 'bucket'] as $field) {
             $submitted = trim((string) ($data[$field] ?? ''));
             $value = $submitted !== '' ? $submitted : trim((string) ($storage->{$field} ?? ''));
             if ($value === '') {
                 throw new \InvalidArgumentException("Storage {$field} is required.");
             }
+            $storageTargetChanged = $storageTargetChanged || $value !== (string) ($storage->{$field} ?? '');
             $storage->{$field} = $value;
         }
         $endpointParts = parse_url((string) $storage->endpoint);
@@ -45,13 +47,20 @@ final class StorageConfigService
         $storage->public_base_url = $baseUrl ?: null;
         $storage->direct_delivery_confirmed = $baseUrl !== '' && (bool) ($data['directDeliveryConfirmed'] ?? $storage->direct_delivery_confirmed);
         $storage->enabled = (bool) ($data['enabled'] ?? $storage->enabled ?? true);
+        $permanentCredentialsChanged = false;
         foreach (['accessKey' => 'access_key_ciphertext', 'secretKey' => 'secret_key_ciphertext'] as $input => $column) {
-            if (isset($data[$input]) && trim((string) $data[$input]) !== '') {
-                $storage->{$column} = $this->cipher->encrypt((string) $data[$input]);
+            $value = trim((string) ($data[$input] ?? ''));
+            if ($value !== '') {
+                $storage->{$column} = $this->cipher->encrypt($value);
+                $permanentCredentialsChanged = true;
             }
         }
         if (!$storage->access_key_ciphertext || !$storage->secret_key_ciphertext) {
-            throw new \InvalidArgumentException('AccessKeyId and AccessKeySecret are required for a new storage configuration.');
+            throw new \InvalidArgumentException('DogeCloud AccessKey and SecretKey are required for a new storage configuration.');
+        }
+        if ($permanentCredentialsChanged || $storageTargetChanged) {
+            $storage->doge_temporary_credentials_ciphertext = null;
+            $storage->doge_temporary_credentials_expires_at = null;
         }
         $storage->save();
         return $storage;

@@ -1,13 +1,13 @@
 {
   "composer.json": {
-    "mtime": 1786805827.4156356,
-    "ast_hash": "3766d2639aed23159bb7b529fbc16561",
+    "mtime": 1786987375.189997,
+    "ast_hash": "85373118b2ce5988d173b4d45c2b8d47",
     "semantic_hash": ""
   },
   "extend.php": {
-    "mtime": 1786733246.721496,
-    "ast_hash": "534df503a665fe67843d26734cc2a118",
-    "semantic_hash": "534df503a665fe67843d26734cc2a118"
+    "mtime": 1786989936.8780673,
+    "ast_hash": "9c3c928f3a2ea658bdf4404c12e8f2f7",
+    "semantic_hash": ""
   },
   "js/admin.js": {
     "mtime": 1786730867.304268,
@@ -230,9 +230,9 @@
     "semantic_hash": "50067be9f6d04beaedbe6c7967dd8967"
   },
   "src/Model/StorageConfig.php": {
-    "mtime": 1786729245.639387,
-    "ast_hash": "1b8cd371ec40dee0323b1b86291b40bc",
-    "semantic_hash": "1b8cd371ec40dee0323b1b86291b40bc"
+    "mtime": 1786987375.192497,
+    "ast_hash": "fb9928f8f85aa448c58ead32899578ad",
+    "semantic_hash": ""
   },
   "src/Service/CategoryService.php": {
     "mtime": 1786732435.8445587,
@@ -250,9 +250,9 @@
     "semantic_hash": "6d9aab0b16a2a6bf370aeb134f075e1c"
   },
   "src/Service/DogeCloudStorage.php": {
-    "mtime": 1786728354.9459372,
-    "ast_hash": "ab2784e998267f8c770fe8d048246502",
-    "semantic_hash": "ab2784e998267f8c770fe8d048246502"
+    "mtime": 1786987375.1940043,
+    "ast_hash": "da3381fe5ff274d8d03b4ff32c3eb5ed",
+    "semantic_hash": ""
   },
   "src/Service/FileService.php": {
     "mtime": 1786733281.9478374,
@@ -275,9 +275,9 @@
     "semantic_hash": "9987e09cab65148277be816f90b09eb4"
   },
   "src/Service/PostFileSync.php": {
-    "mtime": 1786729318.0139744,
-    "ast_hash": "72ce0416c99e577b068a46f9289947e1",
-    "semantic_hash": "72ce0416c99e577b068a46f9289947e1"
+    "mtime": 1786989936.877072,
+    "ast_hash": "3883e44888567e88bb680a669be9902a",
+    "semantic_hash": ""
   },
   "src/Service/Storage.php": {
     "mtime": 1786718580.9951653,
@@ -285,19 +285,19 @@
     "semantic_hash": "a466558bcde7cdb69425133b434a7969"
   },
   "src/Service/StorageConfigService.php": {
-    "mtime": 1786907084.3198385,
-    "ast_hash": "26c3febeaafac75bb6fe23b02ddc18e2",
+    "mtime": 1786987375.1970108,
+    "ast_hash": "29b0752a2b527eea93a94392756a09ca",
     "semantic_hash": ""
   },
   "src/Service/StorageFactory.php": {
-    "mtime": 1786729294.6024232,
-    "ast_hash": "6ab5851f080a41c9595ad72ac22f0b83",
-    "semantic_hash": "6ab5851f080a41c9595ad72ac22f0b83"
+    "mtime": 1786987375.1955142,
+    "ast_hash": "70f768572afda640f8a01aff1ba277cd",
+    "semantic_hash": ""
   },
   "src/Service/TemplateService.php": {
-    "mtime": 1786732897.167675,
-    "ast_hash": "7a574039614abb30e4f6fa3986e45f15",
-    "semantic_hash": "7a574039614abb30e4f6fa3986e45f15"
+    "mtime": 1786989936.8759944,
+    "ast_hash": "3b98f0a1f2c72b58cda40c09ecde4e0b",
+    "semantic_hash": ""
   },
   "src/Service/ThumbnailService.php": {
     "mtime": 1786733171.1465409,
@@ -340,13 +340,13 @@
     "semantic_hash": ""
   },
   "locale/en.yml": {
-    "mtime": 1786864882.7584286,
-    "ast_hash": "0a64daa44c24a17948f6a018f023b352",
+    "mtime": 1786987375.1990194,
+    "ast_hash": "474ed3235f77f023d0531b5852ab18b4",
     "semantic_hash": ""
   },
   "locale/zh.yml": {
-    "mtime": 1786864882.7609367,
-    "ast_hash": "eebe3c1b49defa14f1df0ad0638dd1b6",
+    "mtime": 1786987375.2010179,
+    "ast_hash": "edf323a51913fb28991b9a5e036bfcaa",
     "semantic_hash": ""
   },
   "docs/ARCHITECTURE.md": {
@@ -360,8 +360,43 @@
     "semantic_hash": ""
   },
   "tests/php/StorageConfigServiceTest.php": {
-    "mtime": 1786907450.423691,
-    "ast_hash": "904293ac8ab8db2c5e3761c70d520d4f",
+    "mtime": 1786987375.2095408,
+    "ast_hash": "0663445a3ca4be7dde0535595c3970fc",
+    "semantic_hash": ""
+  },
+  "migrations/2026_01_01_000005_add_dogecloud_temporary_credentials.php": {
+    "mtime": 1786987550.3673115,
+    "ast_hash": "76de3934fcdad5b19c1072104796d829",
+    "semantic_hash": ""
+  },
+  "migrations/2026_01_01_000006_remove_legacy_file_reference_markers.php": {
+    "mtime": 1786989960.9422235,
+    "ast_hash": "c35534f5581ed697cfa66b8857678f83",
+    "semantic_hash": ""
+  },
+  "src/Service/DogeCloudApiClient.php": {
+    "mtime": 1786987375.2045362,
+    "ast_hash": "5183758eea1318d07732161a22647253",
+    "semantic_hash": ""
+  },
+  "src/Service/DogeCloudCredentialProvider.php": {
+    "mtime": 1786987375.2060347,
+    "ast_hash": "6a16ed83f388355f0005bfbdc59f0978",
+    "semantic_hash": ""
+  },
+  "src/Service/DogeCloudTemporaryCredentials.php": {
+    "mtime": 1786987375.2030191,
+    "ast_hash": "9da6df08a65973ccfac54fd3fa1d5fc3",
+    "semantic_hash": ""
+  },
+  "tests/php/DogeCloudApiClientTest.php": {
+    "mtime": 1786987375.2080407,
+    "ast_hash": "2c0a286e7eb002eb5a9af2fec1d383cb",
+    "semantic_hash": ""
+  },
+  "tests/php/PostFileSyncTest.php": {
+    "mtime": 1786989936.8870533,
+    "ast_hash": "fab7cb45a94276d8cba86eb4845d7668",
     "semantic_hash": ""
   }
 }

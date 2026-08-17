@@ -6,7 +6,7 @@ use Mie\FlarumFiles\Model\StorageConfig;
 
 final class StorageFactory
 {
-    public function __construct(private CredentialCipher $cipher) {}
+    public function __construct(private DogeCloudCredentialProvider $credentials) {}
 
     public function make(string $name): Storage
     {
@@ -22,11 +22,14 @@ final class StorageFactory
             throw new \RuntimeException('The selected storage configuration has no credentials.');
         }
 
+        $credentials = $this->credentials->resolve($config);
+
         return new DogeCloudStorage(
-            (string) $config->endpoint,
-            (string) $config->bucket,
-            $this->cipher->decrypt((string) $config->access_key_ciphertext),
-            $this->cipher->decrypt((string) $config->secret_key_ciphertext),
+            $credentials->endpoint,
+            $credentials->bucket,
+            $credentials->accessKeyId,
+            $credentials->secretAccessKey,
+            $credentials->sessionToken,
             $config->public_base_url ?: null,
             $config->region ?: 'auto'
         );

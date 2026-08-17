@@ -42,9 +42,39 @@ final class StorageConfigServiceTest extends TestCase
         }
     }
 
+    public function testReplacingPermanentKeysInvalidatesCachedDogeCloudCredentials(): void
+    {
+        $storage = new class extends StorageConfig {
+            public function save(array $options = []): bool
+            {
+                return true;
+            }
+        };
+        $storage->forceFill([
+            'name' => '多吉云',
+            'driver' => 'dogecloud',
+            'endpoint' => 'https://cos.ap-guangzhou.myqcloud.com',
+            'bucket' => 's-gz-3965-flarum-1258813047',
+            'access_key_ciphertext' => 'old-access',
+            'secret_key_ciphertext' => 'old-secret',
+            'doge_temporary_credentials_ciphertext' => 'cached-credentials',
+            'doge_temporary_credentials_expires_at' => time() + 3600,
+        ]);
+
+        $saved = $this->service()->save([
+            'accessKey' => 'new-permanent-access',
+            'secretKey' => 'new-permanent-secret',
+        ], $storage);
+
+        self::assertNull($saved->doge_temporary_credentials_ciphertext);
+        self::assertNull($saved->doge_temporary_credentials_expires_at);
+    }
+
     private function service(): StorageConfigService
     {
-        $cipher = (new \ReflectionClass(CredentialCipher::class))->newInstanceWithoutConstructor();
+        $reflection = new \ReflectionClass(CredentialCipher::class);
+        $cipher = $reflection->newInstanceWithoutConstructor();
+        $reflection->getProperty('key')->setValue($cipher, random_bytes(32));
 
         return new StorageConfigService($cipher);
     }
