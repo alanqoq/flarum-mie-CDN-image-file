@@ -32,7 +32,9 @@ final class ThumbnailController implements RequestHandlerInterface
                 echo fread($stream, 8192);
             }
             fclose($stream);
-            @unlink($temporaryPath);
+            if ($temporaryPath !== null) {
+                @unlink($temporaryPath);
+            }
         });
         $response = (new Response())->withBody($body);
         foreach ($headers as $name => $value) {

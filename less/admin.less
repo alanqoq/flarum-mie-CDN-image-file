@@ -51,6 +51,34 @@
   margin-top: 20px;
 }
 
+.MieFiles-cacheSettings {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #d7dee5;
+}
+
+.MieFiles-cacheNotice {
+  margin: 12px 0;
+  padding: 12px;
+  border-left: 4px solid #2877b9;
+  background: #f0f6fb;
+  color: #364b5c;
+}
+
+.MieFiles-cacheGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.MieFiles-cacheGrid > .Form-group {
+  min-width: 0;
+}
+
+.MieFiles-cacheToggle {
+  grid-column: 1 / -1;
+}
+
 .MieFiles-category {
   padding: 18px 0;
   border-top: 1px solid #d7dee5;
@@ -147,6 +175,14 @@
   color: #5d4300;
 }
 
+.MieFiles-storageDriverSummary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
 .MieFiles-mimeResult {
   display: grid;
   grid-template-columns: 130px minmax(0, 1fr);
@@ -161,14 +197,16 @@
 
 @media (max-width: 900px) {
   .MieFiles-tabs,
-  .MieFiles-fieldGrid {
+  .MieFiles-fieldGrid,
+  .MieFiles-cacheGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 600px) {
   .MieFiles-tabs,
-  .MieFiles-fieldGrid {
+  .MieFiles-fieldGrid,
+  .MieFiles-cacheGrid {
     grid-template-columns: 1fr;
   }
 

@@ -45,14 +45,26 @@ mie-files:
     storage_methods: 储存方式
     storage_help: 本地储存始终可用。多吉云永久密钥只在服务端换取短期 S3 凭据；可选择 Flarum 中转传出，或配置公开访问链接。
     add_storage: 新增储存方式
-    storage_modal_title: 多吉云云储存
-    storage_accessKey: 多吉云 AccessKey
-    storage_secretKey: 多吉云 SecretKey
+    storage_modal_title: "{driver}"
+    storage_driver_select_title: 选择储存方案
+    storage_driver: 储存方案
+    storage_driver_select_placeholder: 请选择储存方案
+    storage_driver_dogecloud: 多吉云云储存
+    storage_driver_aliyun_oss: 阿里云 OSS
+    storage_driver_local: 本地储存
+    storage_next: 下一步
+    storage_back: 返回
+    storage_accessKey: AccessKey
+    storage_secretKey: SecretKey
     storage_bucket: 存储空间名称或 SDK Bucket
     storage_endpoint: SDK Endpoint
     storage_region: Region
+    storage_pathPrefix: 储存路径
+    storage_pathPrefix_help: 可选。新上传的文件会保存到该路径下；留空则保存到储存空间根目录。格式为以 / 分隔的相对路径，例如 flarum/uploads 或 images/2026；首尾 / 会自动整理，不能使用 . 或 ..。
+    storage_path_display: "路径：{path}"
+    storage_path_root: 储存空间根目录
     storage_publicBaseUrl: 访问链接
-    secret_unchanged: 留空将保持已加密保存的多吉云 SecretKey 不变。
+    credential_unchanged: 留空将保持已加密保存的凭据不变。
     endpoint_unchanged: 留空将保持已保存的 SDK Endpoint 不变。
     delivery_proxy: Flarum 中转
     delivery_direct: 公开直链
@@ -61,8 +73,26 @@ mie-files:
     direct_confirm: 我已理解并接受这些限制。
     image_settings: 图片设置
     hotlink_protection: 对有统计的中转传出拒绝跨站 Referer
-    thumbnailWidth: 缩略图宽度
-    imageQuality: 图片质量
+    thumbnailWidth: 缩略图最大宽度（像素）
+    imageQuality: 缩略图编码质量
+    imageQuality_help: 仅影响“默认图片下载模板”生成的 JPEG、WebP 和 AVIF 缩略图，不会修改储存的原图。取值 1-100；数值越高通常画质和输出文件体积越大。PNG 和 GIF 不使用此设置。
+    cache_settings: 本机文件缓存
+    cache_settings_help: 将近期使用的远程文件保留在 Flarum 服务器上，用于中转传出。
+    cache_behavior_help: 只有通过 Flarum 中转传出的远程储存文件会使用本缓存。本地储存和公开直链不会使用缓存。缓存文件是明文私有副本，必须按照上传文件的安全级别保护。
+    cache_path_help: 缓存文件保存在 Flarum 根目录下的 storage/mie-files-cache/。
+    cache_enabled: 启用本机缓存
+    cache_enabled_help: 仅影响 Flarum 中转模式下的远程储存；缓存写入失败时会降级为直接读取远程对象。
+    cache_retentionDays: 未访问缓存保留天数
+    cache_retention_days_help: 超过此天数未访问的文件会在缓存清理时删除。
+    cache_maxMb: 原文件缓存容量（MB）
+    cache_max_mb_help: 超过此容量后会优先删除最近最少使用的原文件。
+    cache_maxFileMb: 单个原文件缓存上限（MB）
+    cache_max_file_mb_help: 超过此大小的远程文件不会保存本机副本。
+    cache_thumbnails: 启用缩略图缓存
+    cache_thumbnails_help: 缓存已生成的缩略图响应，减少重复图片处理。
+    cache_thumbnailMaxMb: 缩略图缓存容量（MB）
+    cache_thumbnail_max_mb_help: 超过此容量后会优先删除最近最少使用的缩略图。
+    cache_value_invalid: 请输入允许范围内的整数。
     plugin_settings: 插件设置
     orphanRetentionDays: 孤儿文件保留天数
     mime_title: 确认 MIME 类型

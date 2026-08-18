@@ -11,17 +11,25 @@ final class PostFileSync
     {
         preg_match_all('#/mie/files/(\d+)/(?:proxy|download)#', $content, $matches);
         $ids = array_unique(array_map('intval', $matches[1]));
-        $objectKeyIds = File::query()
-            ->where('user_id', $post->user_id)
-            ->whereIn('object_key', self::directObjectKeys($content))
-            ->pluck('id')
-            ->all();
+        $objectKeyIds = [];
+        $objectKeySuffixes = self::directObjectKeySuffixes($content);
+        if ($objectKeySuffixes !== []) {
+            $objectKeyIds = File::query()
+                ->where('user_id', $post->user_id)
+                ->where(function ($query) use ($objectKeySuffixes): void {
+                    foreach ($objectKeySuffixes as $suffix) {
+                        $query->orWhere('object_key', $suffix)->orWhere('object_key', 'like', '%/'.$suffix);
+                    }
+                })
+                ->pluck('id')
+                ->all();
+        }
         $valid = File::query()->where('user_id', $post->user_id)->whereIn('id', array_unique(array_merge($ids, $objectKeyIds)))->pluck('id')->all();
         $post->belongsToMany(File::class, 'mie_file_post', 'post_id', 'file_id')->sync($valid);
     }
 
     /** @return list<string> */
-    public static function directObjectKeys(string $content): array
+    public static function directObjectKeySuffixes(string $content): array
     {
         preg_match_all(
             '~https?://[^\s<>"\'()\[\]]*/([0-9]{4}/[0-9]{2}/[a-f0-9]{48}\.[a-z0-9]{1,16})(?=\z|[?&#\s<>"\'()\[\]])~',

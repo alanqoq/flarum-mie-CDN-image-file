@@ -10,7 +10,7 @@ use Psr\Http\Message\UploadedFileInterface;
 
 final class FileService
 {
-    public function __construct(private StorageFactory $storages) {}
+    public function __construct(private StorageFactory $storages, private FileCache $cache) {}
 
     public function upload(User $actor, Category $category, UploadedFileInterface $upload): File
     {
@@ -28,7 +28,8 @@ final class FileService
                 throw new \InvalidArgumentException('The file exceeds this category maximum size.');
             }
             [$extension, $mime] = MimeValidator::validate((string) $upload->getClientFilename(), $temporaryPath, (array) $category->rules);
-            $objectKey = date('Y/m').'/'.bin2hex(random_bytes(24)).'.'.$extension;
+            $prefix = $this->storages->pathPrefix($category->storage_name);
+            $objectKey = ($prefix === '' ? '' : $prefix.'/').date('Y/m').'/'.bin2hex(random_bytes(24)).'.'.$extension;
             $file = new File();
             $file->fill([
                 'user_id' => $actor->id,
@@ -61,6 +62,7 @@ final class FileService
     {
         try {
             $this->storages->make($file->storage_name)->delete($file->object_key);
+            $this->cache->forgetFile($file->storage_name, $file->object_key);
             $file->posts()->detach();
             $file->delete();
         } catch (\Throwable $exception) {

@@ -70,18 +70,22 @@ final class StorageController implements RequestHandlerInterface
     /** @return array<string,mixed> */
     private static function attributes(StorageConfig $storage): array
     {
-        return [
+        $attributes = [
             'id' => (string) $storage->id,
             'name' => $storage->name,
             'driver' => $storage->driver,
             'enabled' => (bool) $storage->enabled,
             'bucket' => $storage->bucket,
-            'region' => $storage->region,
+            'pathPrefix' => $storage->path_prefix,
             'publicBaseUrl' => $storage->public_base_url,
             'deliveryMode' => $storage->public_base_url ? 'direct' : 'proxy',
             'hasCredentials' => (bool) ($storage->access_key_ciphertext && $storage->secret_key_ciphertext),
             'endpointConfigured' => (bool) $storage->endpoint,
             'directDeliveryConfirmed' => (bool) $storage->direct_delivery_confirmed,
         ];
+        if ($storage->driver === 'aliyun_oss') {
+            $attributes['region'] = $storage->region;
+        }
+        return $attributes;
     }
 }

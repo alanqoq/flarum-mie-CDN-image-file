@@ -65,6 +65,8 @@ graphify tree --root . --label "Mie Files for Flarum"
 
 DogeCloud 存储使用 AWS S3 兼容 SDK。`AccessKeyId` 与 `AccessKeySecret` 会在服务端加密，API 响应中不会返回它们，也不会包含内部对象键或 `endpoint` 地址。
 
+- Region 固定使用 SDK 的 `auto`，管理界面无需配置。
+- 可设置对象路径前缀，例如 `flarum/uploads`。该设置只影响之后上传的新文件，已有文件不会自动移动。
 - 未设置公共基础 URL 时，使用 Flarum 代理模式。每次访问均会经过鉴权、流式传输和计数；生成的插入模板会遵循防盗链设置。
 - 设置公共基础 URL 后，使用直链模式。服务端完成授权后，会使用随机对象路径生成并返回基于该公共基础 URL 的链接。一旦向客户端返回公共 URL，PHP 下载统计、防盗链与每次下载时的鉴权将不再生效。在管理界面中，必须明确确认后才能保存此模式。
 

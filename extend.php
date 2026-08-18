@@ -16,6 +16,7 @@ use Mie\FlarumFiles\Api\Controller\StorageController;
 use Mie\FlarumFiles\Api\Controller\TemplateController;
 use Mie\FlarumFiles\Api\Controller\ThumbnailController;
 use Mie\FlarumFiles\Listener\SyncPostFiles;
+use Mie\FlarumFiles\Console\CleanCacheCommand;
 use Mie\FlarumFiles\Console\CleanOrphansCommand;
 
 return [
@@ -53,5 +54,7 @@ return [
         ->listen(Restored::class, SyncPostFiles::class),
     (new Extend\Console())
         ->command(CleanOrphansCommand::class)
-        ->schedule(CleanOrphansCommand::class, function ($event) { $event->daily(); }),
+        ->schedule(CleanOrphansCommand::class, function ($event) { $event->daily(); })
+        ->command(CleanCacheCommand::class)
+        ->schedule(CleanCacheCommand::class, function ($event) { $event->daily(); }),
 ];

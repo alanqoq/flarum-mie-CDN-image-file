@@ -4,24 +4,24 @@ namespace Mie\FlarumFiles\Service;
 
 use Aws\S3\S3Client;
 
-final class DogeCloudStorage implements Storage
+final class AliyunOssStorage implements Storage
 {
     private S3Client $client;
 
     public function __construct(
-        private string $endpoint,
+        string $endpoint,
         private string $bucket,
+        string $region,
         string $accessKey,
         string $secretKey,
-        string $sessionToken,
         private ?string $publicBaseUrl = null
     ) {
         $this->client = new S3Client([
             'version' => 'latest',
-            'region' => 'auto',
-            'endpoint' => $this->endpoint,
+            'region' => $region,
+            'endpoint' => $endpoint,
             'use_path_style_endpoint' => false,
-            'credentials' => ['key' => $accessKey, 'secret' => $secretKey, 'token' => $sessionToken],
+            'credentials' => ['key' => $accessKey, 'secret' => $secretKey],
         ]);
     }
 

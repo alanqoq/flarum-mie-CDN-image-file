@@ -45,7 +45,7 @@ final class ExtensionContractTest extends TestCase
         self::assertArrayNotHasKey('public_token', $payload);
     }
 
-    public function testStoragePayloadMasksCredentialsAndEndpoint(): void
+    public function testStoragePayloadMasksCredentialsAndHonorsDriverContracts(): void
     {
         $storage = new StorageConfig();
         $storage->forceFill([
@@ -55,7 +55,7 @@ final class ExtensionContractTest extends TestCase
             'enabled' => true,
             'endpoint' => 'https://secret-endpoint.example',
             'bucket' => 'bucket',
-            'region' => 'auto',
+            'path_prefix' => 'forum/uploads',
             'access_key_ciphertext' => 'encrypted-access',
             'secret_key_ciphertext' => 'encrypted-secret',
             'public_base_url' => null,
@@ -68,5 +68,15 @@ final class ExtensionContractTest extends TestCase
         }
         self::assertTrue($payload['hasCredentials']);
         self::assertTrue($payload['endpointConfigured']);
+        self::assertSame('forum/uploads', $payload['pathPrefix']);
+        self::assertArrayNotHasKey('region', $payload);
+
+        $storage->forceFill([
+            'name' => 'oss',
+            'driver' => 'aliyun_oss',
+            'region' => 'cn-hangzhou',
+        ]);
+        $payload = $method->invoke(null, $storage);
+        self::assertSame('cn-hangzhou', $payload['region']);
     }
 }

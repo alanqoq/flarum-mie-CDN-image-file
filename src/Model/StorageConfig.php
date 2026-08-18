@@ -12,6 +12,7 @@ use Flarum\Database\AbstractModel;
  * @property string $endpoint
  * @property string $bucket
  * @property string|null $region
+ * @property string|null $path_prefix
  * @property string|null $access_key_ciphertext
  * @property string|null $secret_key_ciphertext
  * @property string|null $doge_temporary_credentials_ciphertext

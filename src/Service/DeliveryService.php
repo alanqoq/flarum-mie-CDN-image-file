@@ -15,7 +15,8 @@ final class DeliveryService
     public function __construct(
         private StorageFactory $storages,
         private Config $config,
-        private SettingsRepositoryInterface $settings
+        private SettingsRepositoryInterface $settings,
+        private FileCache $cache
     ) {}
 
     public function url(File $file, User $actor, string $mode): string
@@ -35,11 +36,25 @@ final class DeliveryService
     /** @return array{0:mixed,1:array<string,string>} */
     public function open(File $file, User $actor, string $mode, ServerRequestInterface $request): array
     {
+        $storage = $this->prepare($file, $actor, $mode, $request);
+        $name = str_replace(['"', "\r", "\n"], '', $file->original_name);
+        return [
+            $this->source($file, $storage),
+            [
+                'Content-Type' => $file->mime_type,
+                'Content-Length' => (string) $file->size,
+                'Content-Disposition' => ($mode === 'download' ? 'attachment' : 'inline').'; filename="'.$name.'"',
+                'Cache-Control' => $this->isTrackedTemplate($file->category->insert_template) ? 'private, no-store' : 'private, max-age=300',
+            ],
+        ];
+    }
+
+    public function prepare(File $file, User $actor, string $mode, ServerRequestInterface $request): Storage
+    {
         $this->assertAvailable($file);
         $this->assertPermission($file, $actor, $mode);
         $template = $file->category->insert_template;
-        $tracked = $this->isTrackedTemplate($template);
-        if ($tracked) {
+        if ($this->isTrackedTemplate($template)) {
             $this->assertNotHotlinked($request);
             $file->forceFill(['downloads' => ((int) $file->downloads) + 1])->save();
             $delivery = new FileDelivery();
@@ -50,16 +65,31 @@ final class DeliveryService
                 'referer_host' => parse_url($request->getHeaderLine('Referer'), PHP_URL_HOST) ?: null,
             ])->save();
         }
-        $name = str_replace(['"', "\r", "\n"], '', $file->original_name);
-        return [
-            $this->storages->make($file->storage_name)->stream($file->object_key),
-            [
-                'Content-Type' => $file->mime_type,
-                'Content-Length' => (string) $file->size,
-                'Content-Disposition' => ($mode === 'download' ? 'attachment' : 'inline').'; filename="'.$name.'"',
-                'Cache-Control' => $tracked ? 'private, no-store' : 'private, max-age=300',
-            ],
-        ];
+        return $this->storages->make($file->storage_name);
+    }
+
+    public function source(File $file, Storage $storage)
+    {
+        if ($this->usesCache($file, $storage)) {
+            $cached = $this->cache->openObject(
+                $file->storage_name,
+                $file->object_key,
+                (int) $file->size,
+                function (string $target) use ($storage, $file): void {
+                    $this->copyToFile($storage->stream($file->object_key), $target);
+                }
+            );
+            if (is_resource($cached)) {
+                return $cached;
+            }
+        }
+
+        return $storage->stream($file->object_key);
+    }
+
+    public function usesCache(File $file, Storage $storage): bool
+    {
+        return $file->storage_name !== 'local' && $storage->publicUrl($file->object_key) === null;
     }
 
     public function modeFor(File $file): string
@@ -122,6 +152,35 @@ final class DeliveryService
         $forumHost = parse_url((string) $this->config->url(), PHP_URL_HOST);
         if (!$host || !$forumHost || !hash_equals(strtolower($forumHost), strtolower($host))) {
             throw new \RuntimeException('Hotlink protection rejected this request.');
+        }
+    }
+
+    private function copyToFile(mixed $source, string $target): void
+    {
+        $destination = fopen($target, 'wb');
+        if ($destination === false) {
+            throw new \RuntimeException('Cannot write file cache.');
+        }
+        try {
+            if (is_resource($source)) {
+                if (stream_copy_to_stream($source, $destination) === false) {
+                    throw new \RuntimeException('Cannot read remote file for cache.');
+                }
+            } else {
+                while (!$source->eof()) {
+                    fwrite($destination, $source->read(8192));
+                }
+            }
+        } finally {
+            if (is_resource($source)) {
+                @fclose($source);
+            } else {
+                try {
+                    $source->close();
+                } catch (\Throwable) {
+                }
+            }
+            fclose($destination);
         }
     }
 }

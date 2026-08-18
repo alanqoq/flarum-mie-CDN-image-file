@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "extend.php": {
-    "mtime": 1786989936.8780673,
-    "ast_hash": "9c3c928f3a2ea658bdf4404c12e8f2f7",
+    "mtime": 1787032886.4145744,
+    "ast_hash": "35b0fe569d381895ffcb64c1dc076408",
     "semantic_hash": ""
   },
   "js/admin.js": {
@@ -35,14 +35,14 @@
     "semantic_hash": "6b31c85a7a50051c1cbe95ccd0c9f15f"
   },
   "js/src/admin/components/SettingsPage.js": {
-    "mtime": 1786730435.2923553,
-    "ast_hash": "66f9c30a9dcc3bb2e9775d058a84a8a7",
-    "semantic_hash": "66f9c30a9dcc3bb2e9775d058a84a8a7"
+    "mtime": 1787045149.6997938,
+    "ast_hash": "451709da8f6fa6744aea3f5b183400d9",
+    "semantic_hash": ""
   },
   "js/src/admin/components/StorageModal.js": {
-    "mtime": 1786731077.3912735,
-    "ast_hash": "2b02f7005c4d9ef6614a8c4cbb10685c",
-    "semantic_hash": "2b02f7005c4d9ef6614a8c4cbb10685c"
+    "mtime": 1786997970.8650818,
+    "ast_hash": "27c8a6d066bdf86c09a6da6a5654697e",
+    "semantic_hash": ""
   },
   "js/src/admin/index.js": {
     "mtime": 1786823685.2487624,
@@ -170,9 +170,9 @@
     "semantic_hash": "afb80389b0df42c596ede7d5a48f0306"
   },
   "src/Api/Controller/StorageController.php": {
-    "mtime": 1786731092.5757,
-    "ast_hash": "605203528da0a2ddde3eec8b13cc5d20",
-    "semantic_hash": "605203528da0a2ddde3eec8b13cc5d20"
+    "mtime": 1786999196.6360817,
+    "ast_hash": "638bd823ccb3fb34aa3ea485345c63e4",
+    "semantic_hash": ""
   },
   "src/Api/Controller/TemplateController.php": {
     "mtime": 1786729356.63238,
@@ -180,9 +180,9 @@
     "semantic_hash": "f7bb34689df950ea5b4d8b32c9a86aab"
   },
   "src/Api/Controller/ThumbnailController.php": {
-    "mtime": 1786732944.0151794,
-    "ast_hash": "51823c41883dfe7ecc693db0b05a8751",
-    "semantic_hash": "51823c41883dfe7ecc693db0b05a8751"
+    "mtime": 1787033600.1990626,
+    "ast_hash": "14ce77937376dc65094fc59f26c54e70",
+    "semantic_hash": ""
   },
   "src/Api/JsonResponder.php": {
     "mtime": 1786728653.4289224,
@@ -230,8 +230,8 @@
     "semantic_hash": "50067be9f6d04beaedbe6c7967dd8967"
   },
   "src/Model/StorageConfig.php": {
-    "mtime": 1786987375.192497,
-    "ast_hash": "fb9928f8f85aa448c58ead32899578ad",
+    "mtime": 1786997908.356107,
+    "ast_hash": "483e01581b7db0f590e8651dbee514cc",
     "semantic_hash": ""
   },
   "src/Service/CategoryService.php": {
@@ -245,19 +245,19 @@
     "semantic_hash": "263f7f4e08f261bddcbefb6b2d1759bb"
   },
   "src/Service/DeliveryService.php": {
-    "mtime": 1786732897.1666715,
-    "ast_hash": "6d9aab0b16a2a6bf370aeb134f075e1c",
-    "semantic_hash": "6d9aab0b16a2a6bf370aeb134f075e1c"
+    "mtime": 1787034354.860229,
+    "ast_hash": "bf8bd531fd165f3a68b4fa7d3bf53039",
+    "semantic_hash": ""
   },
   "src/Service/DogeCloudStorage.php": {
-    "mtime": 1786987375.1940043,
-    "ast_hash": "da3381fe5ff274d8d03b4ff32c3eb5ed",
+    "mtime": 1786995287.4893303,
+    "ast_hash": "ab0508a07637793730c6c367c5b99896",
     "semantic_hash": ""
   },
   "src/Service/FileService.php": {
-    "mtime": 1786733281.9478374,
-    "ast_hash": "1492ea662d6bfe4e904a0f49a5524306",
-    "semantic_hash": "1492ea662d6bfe4e904a0f49a5524306"
+    "mtime": 1787033600.197062,
+    "ast_hash": "70bc6a326fef8f553a6e2e5426bceff3",
+    "semantic_hash": ""
   },
   "src/Service/LocalStorage.php": {
     "mtime": 1786728314.661733,
@@ -275,8 +275,8 @@
     "semantic_hash": "9987e09cab65148277be816f90b09eb4"
   },
   "src/Service/PostFileSync.php": {
-    "mtime": 1786989936.877072,
-    "ast_hash": "3883e44888567e88bb680a669be9902a",
+    "mtime": 1786995287.4913273,
+    "ast_hash": "c681da08a146b21ab5649f0354a45b4d",
     "semantic_hash": ""
   },
   "src/Service/Storage.php": {
@@ -285,13 +285,13 @@
     "semantic_hash": "a466558bcde7cdb69425133b434a7969"
   },
   "src/Service/StorageConfigService.php": {
-    "mtime": 1786987375.1970108,
-    "ast_hash": "29b0752a2b527eea93a94392756a09ca",
+    "mtime": 1786997908.3550992,
+    "ast_hash": "2668ffaf7f20bb681476c66547467a2c",
     "semantic_hash": ""
   },
   "src/Service/StorageFactory.php": {
-    "mtime": 1786987375.1955142,
-    "ast_hash": "70f768572afda640f8a01aff1ba277cd",
+    "mtime": 1786997908.3540838,
+    "ast_hash": "47a5f5f6f88aee31431ba4bd8eeda113",
     "semantic_hash": ""
   },
   "src/Service/TemplateService.php": {
@@ -300,9 +300,9 @@
     "semantic_hash": ""
   },
   "src/Service/ThumbnailService.php": {
-    "mtime": 1786733171.1465409,
-    "ast_hash": "11111dc0d0b623ad154eb889fcd17ab2",
-    "semantic_hash": "11111dc0d0b623ad154eb889fcd17ab2"
+    "mtime": 1787034354.860229,
+    "ast_hash": "716cc2647c3c864d272d7eaad2f83335",
+    "semantic_hash": ""
   },
   "src/Validator/CategoryValidator.php": {
     "mtime": 1786907084.3210511,
@@ -325,9 +325,9 @@
     "semantic_hash": ""
   },
   "tests/php/Integration/ExtensionContractTest.php": {
-    "mtime": 1786732629.4115236,
-    "ast_hash": "fcf88fb6f1280fdf30d5266766a2728c",
-    "semantic_hash": "fcf88fb6f1280fdf30d5266766a2728c"
+    "mtime": 1786999196.6385784,
+    "ast_hash": "04accfd89ccb6183cecb31ba854d2579",
+    "semantic_hash": ""
   },
   "tests/php/MimeValidatorTest.php": {
     "mtime": 1786728921.1987953,
@@ -335,18 +335,18 @@
     "semantic_hash": "98b8942b2968707dd1709c12555c37b1"
   },
   "README.md": {
-    "mtime": 1786822227.7759426,
-    "ast_hash": "11235d347899208845cf629a5061eeb1",
+    "mtime": 1786995446.8464327,
+    "ast_hash": "f9051e1acffde648f641967d22cceafc",
     "semantic_hash": ""
   },
   "locale/en.yml": {
-    "mtime": 1786987375.1990194,
-    "ast_hash": "474ed3235f77f023d0531b5852ab18b4",
+    "mtime": 1787045149.7028103,
+    "ast_hash": "403ac57c3ef461a9c4b6a75de7433b39",
     "semantic_hash": ""
   },
   "locale/zh.yml": {
-    "mtime": 1786987375.2010179,
-    "ast_hash": "edf323a51913fb28991b9a5e036bfcaa",
+    "mtime": 1787045149.7013128,
+    "ast_hash": "610739b3906ee14abad256514795cdc8",
     "semantic_hash": ""
   },
   "docs/ARCHITECTURE.md": {
@@ -360,8 +360,8 @@
     "semantic_hash": ""
   },
   "tests/php/StorageConfigServiceTest.php": {
-    "mtime": 1786987375.2095408,
-    "ast_hash": "0663445a3ca4be7dde0535595c3970fc",
+    "mtime": 1786997970.868591,
+    "ast_hash": "b5d9ca36018fb9c0296cd9d75097d7c3",
     "semantic_hash": ""
   },
   "migrations/2026_01_01_000005_add_dogecloud_temporary_credentials.php": {
@@ -395,8 +395,58 @@
     "semantic_hash": ""
   },
   "tests/php/PostFileSyncTest.php": {
-    "mtime": 1786989936.8870533,
-    "ast_hash": "fab7cb45a94276d8cba86eb4845d7668",
+    "mtime": 1786995462.0608356,
+    "ast_hash": "61b50d7293da0b01b38639c26f98b85e",
+    "semantic_hash": ""
+  },
+  "js/src/admin/storageDrivers.js": {
+    "mtime": 1786997908.3588212,
+    "ast_hash": "1b45d8c18f65c1567020f5ac6b82e9e9",
+    "semantic_hash": ""
+  },
+  "js/tests/admin/cacheSettings.test.js": {
+    "mtime": 1787045149.7038107,
+    "ast_hash": "b0c3918f64789b6ee242df60a8052299",
+    "semantic_hash": ""
+  },
+  "js/tests/admin/storageDrivers.test.js": {
+    "mtime": 1786997908.3598275,
+    "ast_hash": "a88c4c276a000d376eb6f82dd9d695ae",
+    "semantic_hash": ""
+  },
+  "migrations/2026_01_01_000007_add_storage_path_prefix.php": {
+    "mtime": 1786995287.48533,
+    "ast_hash": "f666bb67dc4640e08b457020890681b0",
+    "semantic_hash": ""
+  },
+  "migrations/2026_01_01_000008_add_storage_region.php": {
+    "mtime": 1787057774.5512283,
+    "ast_hash": "031143a9c6a7edeb3f5e84cd49710842",
+    "semantic_hash": ""
+  },
+  "src/Console/CleanCacheCommand.php": {
+    "mtime": 1787032886.4135764,
+    "ast_hash": "b4e68e7ff0638cedb32841e74d28e59a",
+    "semantic_hash": ""
+  },
+  "src/Service/AliyunOssStorage.php": {
+    "mtime": 1786997908.3521533,
+    "ast_hash": "0748bd21f62308f01b60ddebed3e34b7",
+    "semantic_hash": ""
+  },
+  "src/Service/FileCache.php": {
+    "mtime": 1787034354.8582282,
+    "ast_hash": "4c862afa3860c5354746f4e41ab461a7",
+    "semantic_hash": ""
+  },
+  "tests/php/FileCacheTest.php": {
+    "mtime": 1787035003.0890324,
+    "ast_hash": "2b350db51a22b5ce827799950f13abeb",
+    "semantic_hash": ""
+  },
+  "tests/php/StorageFactoryTest.php": {
+    "mtime": 1786998014.523188,
+    "ast_hash": "34b0cc08bd872db193ecd66e6380288b",
     "semantic_hash": ""
   }
 }
