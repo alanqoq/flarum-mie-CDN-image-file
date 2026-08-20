@@ -56,15 +56,33 @@ final class DeliveryService
         $template = $file->category->insert_template;
         if ($this->isTrackedTemplate($template)) {
             $this->assertNotHotlinked($request);
-            $file->forceFill(['downloads' => ((int) $file->downloads) + 1])->save();
-            $delivery = new FileDelivery();
-            $delivery->fill([
-                'file_id' => $file->id,
-                'actor_id' => $actor->id ?: null,
-                'mode' => $mode,
-                'referer_host' => parse_url($request->getHeaderLine('Referer'), PHP_URL_HOST) ?: null,
-            ])->save();
+            if ($mode !== 'preview') {
+                $file->forceFill(['downloads' => ((int) $file->downloads) + 1])->save();
+                $delivery = new FileDelivery();
+                $delivery->fill([
+                    'file_id' => $file->id,
+                    'actor_id' => $actor->id ?: null,
+                    'mode' => $mode,
+                    'referer_host' => parse_url($request->getHeaderLine('Referer'), PHP_URL_HOST) ?: null,
+                ])->save();
+            }
         }
+        return $this->storages->make($file->storage_name);
+    }
+
+    /**
+     * Authorize and prepare the source for thumbnail generation without
+     * exposing the original object through the proxy endpoint.
+     */
+    public function prepareThumbnail(File $file, User $actor, ServerRequestInterface $request): Storage
+    {
+        $this->assertAvailable($file);
+        $this->assertThumbnailPermission($file, $actor);
+
+        if ($this->isTrackedTemplate($file->category->insert_template)) {
+            $this->assertNotHotlinked($request);
+        }
+
         return $this->storages->make($file->storage_name);
     }
 
@@ -104,7 +122,7 @@ final class DeliveryService
     public function thumbnailUrl(File $file, User $actor): string
     {
         $this->assertAvailable($file);
-        $this->assertPermission($file, $actor, 'preview');
+        $this->assertThumbnailPermission($file, $actor);
         return rtrim((string) $this->config->url(), '/').'/api/mie/files/'.$file->id.'/thumbnail';
     }
 
@@ -125,6 +143,16 @@ final class DeliveryService
         }
         $action = $mode === 'download' ? 'download' : 'view';
         if (!PermissionService::can($actor, $category->permission_name, $action)) {
+            throw new \RuntimeException('File delivery permission denied.');
+        }
+    }
+
+    private function assertThumbnailPermission(File $file, User $actor): void
+    {
+        if (!str_starts_with(strtolower((string) $file->mime_type), 'image/')) {
+            throw new \RuntimeException('This file is not an image.');
+        }
+        if (!PermissionService::can($actor, $file->category->permission_name, 'view')) {
             throw new \RuntimeException('File delivery permission denied.');
         }
     }

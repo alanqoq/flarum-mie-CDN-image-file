@@ -53,8 +53,8 @@ function pageWith(settings) {
 describe('file cache settings', () => {
   it('uses the requested defaults and honors disabled boolean settings', () => {
     app.data.settings = {
-      'mie-files.cache-enabled': false,
-      'mie-files.cache-thumbnails': '0',
+      'mie-files.cache-enabled': 'false',
+      'mie-files.cache-thumbnails': 'off',
     };
     const page = Object.create(SettingsPage.prototype);
     page.load = vi.fn();
@@ -69,6 +69,23 @@ describe('file cache settings', () => {
       thumbnails: false,
       thumbnailMaxMb: 2048,
     });
+    expect(page.imageSettings.thumbnailConvertWebp).toBe(false);
+    app.data.settings = {};
+  });
+
+  it('loads and saves the thumbnail WebP conversion setting', async () => {
+    app.data.settings = { 'mie-files.thumbnail-convert-webp': '1' };
+    const page = Object.create(SettingsPage.prototype);
+    page.load = vi.fn();
+    page.oninit({});
+    expect(page.imageSettings.thumbnailConvertWebp).toBe(true);
+    app.request.mockResolvedValue({});
+    page.saveSettings({ 'mie-files.thumbnail-convert-webp': page.imageSettings.thumbnailConvertWebp ? '1' : '0' });
+    await Promise.resolve();
+    expect(app.request).toHaveBeenLastCalledWith(expect.objectContaining({
+      method: 'POST',
+      body: { 'mie-files.thumbnail-convert-webp': '1' },
+    }));
     app.data.settings = {};
   });
 
@@ -139,7 +156,7 @@ describe('file cache settings', () => {
 
     await page.saveCategories();
 
-    const settingsRequest = app.request.mock.calls.find(([request]) => request.method === 'POST');
+    const settingsRequest = app.request.mock.calls.find(([request]) => request.method === 'POST' && request.body['mie-files.cache-enabled'] !== undefined);
     expect(settingsRequest[0].body).toEqual(page.cacheSettingsBody());
     expect(Object.keys(settingsRequest[0].body)).toHaveLength(6);
   });
@@ -163,6 +180,9 @@ describe('file cache settings', () => {
       'cache_thumbnailMaxMb',
       'cache_thumbnail_max_mb_help',
       'cache_value_invalid',
+      'thumbnail_settings',
+      'thumbnail_convert_webp',
+      'thumbnail_convert_webp_help',
     ];
 
     for (const locale of ['en', 'zh']) {

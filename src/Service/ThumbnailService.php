@@ -4,7 +4,6 @@ namespace Mie\FlarumFiles\Service;
 
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\User;
-use Mie\FlarumFiles\CategoryDefaults;
 use Mie\FlarumFiles\Model\File;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -19,14 +18,15 @@ final class ThumbnailService
     /** @return array{0:resource,1:array<string,string>,2:?string} */
     public function make(File $file, User $actor, ServerRequestInterface $request): array
     {
-        if ($file->category->insert_template !== CategoryDefaults::IMAGE_DOWNLOAD) {
-            throw new \RuntimeException('This file does not use an image download template.');
+        if (!str_starts_with(strtolower((string) $file->mime_type), 'image/')) {
+            throw new \RuntimeException('This file is not an image.');
         }
-        // Authorization, hotlink protection and delivery accounting always precede cache lookup.
-        $storage = $this->delivery->prepare($file, $actor, 'preview', $request);
+        // Authorization and hotlink protection always precede cache lookup.
+        $storage = $this->delivery->prepareThumbnail($file, $actor, $request);
         $width = max(32, min(4096, (int) $this->settings->get('mie-files.thumbnail-width', 480)));
         $quality = max(1, min(100, (int) $this->settings->get('mie-files.image-quality', 85)));
-        $mime = $this->outputMime($file->mime_type);
+        $convertWebp = (string) $this->settings->get('mie-files.thumbnail-convert-webp', '0') === '1';
+        $mime = $this->outputMime($file->mime_type, $convertWebp);
         if ($this->delivery->usesCache($file, $storage)) {
             $cached = $this->cache->openThumbnail(
                 $file->storage_name,
@@ -34,8 +34,8 @@ final class ThumbnailService
                 $width,
                 $quality,
                 $mime,
-                function (string $target) use ($file, $storage, $width, $quality): void {
-                    $this->generate($this->delivery->source($file, $storage), $target, $file->mime_type, $width, $quality);
+                function (string $target) use ($file, $storage, $width, $quality, $convertWebp): void {
+                    $this->generate($this->delivery->source($file, $storage), $target, $file->mime_type, $width, $quality, $convertWebp);
                 }
             );
             if (is_resource($cached)) {
@@ -48,7 +48,7 @@ final class ThumbnailService
             throw new \RuntimeException('Cannot create a thumbnail temporary file.');
         }
         try {
-            $this->generate($this->delivery->source($file, $storage), $target, $file->mime_type, $width, $quality);
+            $this->generate($this->delivery->source($file, $storage), $target, $file->mime_type, $width, $quality, $convertWebp);
             $stream = fopen($target, 'rb');
             if ($stream === false) {
                 throw new \RuntimeException('Cannot open the generated thumbnail.');
@@ -61,7 +61,7 @@ final class ThumbnailService
         }
     }
 
-    private function generate(mixed $stream, string $target, string $sourceMime, int $maxWidth, int $quality): void
+    private function generate(mixed $stream, string $target, string $sourceMime, int $maxWidth, int $quality, bool $convertWebp): void
     {
         $source = $this->copyToTemporaryFile($stream);
         try {
@@ -85,7 +85,7 @@ final class ThumbnailService
                     $transparent = imagecolorallocatealpha($thumbnail, 0, 0, 0, 127);
                     imagefill($thumbnail, 0, 0, $transparent);
                     imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $width, $height, $sourceWidth, $sourceHeight);
-                    $this->writeImage($thumbnail, $target, $sourceMime, $quality);
+                    $this->writeImage($thumbnail, $target, $sourceMime, $quality, $convertWebp);
                 } finally {
                     imagedestroy($thumbnail);
                 }
@@ -145,14 +145,23 @@ final class ThumbnailService
         }
     }
 
-    private function outputMime(string $sourceMime): string
+    private function outputMime(string $sourceMime, bool $convertWebp = false): string
     {
+        if ($convertWebp) {
+            return 'image/webp';
+        }
+
         return in_array($sourceMime, ['image/png', 'image/gif', 'image/webp', 'image/avif'], true) ? $sourceMime : 'image/jpeg';
     }
 
-    private function writeImage(\GdImage $image, string $path, string $sourceMime, int $quality): void
+    private function writeImage(\GdImage $image, string $path, string $sourceMime, int $quality, bool $convertWebp = false): void
     {
-        $written = match ($this->outputMime($sourceMime)) {
+        $outputMime = $this->outputMime($sourceMime, $convertWebp);
+        if ($outputMime === 'image/webp' && !function_exists('imagewebp')) {
+            throw new \RuntimeException('WebP thumbnail conversion requires PHP GD WebP support.');
+        }
+
+        $written = match ($outputMime) {
             'image/png' => imagepng($image, $path, 6),
             'image/gif' => imagegif($image, $path),
             'image/webp' => imagewebp($image, $path, $quality),

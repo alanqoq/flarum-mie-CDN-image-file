@@ -24,7 +24,12 @@ export default class SettingsPage extends Component {
       const value = Number(app.data.settings?.[key]);
       return Number.isFinite(value) && value > 0 ? value : fallback;
     };
-    const settingEnabled = (key) => !['0', 0, false, '', null].includes(app.data.settings?.[key]);
+    const settingEnabled = (key) => {
+      const value = app.data.settings?.[key];
+      if (value === undefined) return true;
+      if (typeof value === 'string') return !['', '0', 'false', 'off', 'no'].includes(value.trim().toLowerCase());
+      return Boolean(value);
+    };
     this.cacheSettings = {
       enabled: settingEnabled('mie-files.cache-enabled'),
       retentionDays: settingNumber('mie-files.cache-retention-days', 30),
@@ -37,6 +42,7 @@ export default class SettingsPage extends Component {
       hotlinkProtection: String(app.data.settings?.['mie-files.hotlink-protection'] ?? '1') !== '0',
       thumbnailWidth: Number(app.data.settings?.['mie-files.thumbnail-width'] || 480),
       imageQuality: Number(app.data.settings?.['mie-files.image-quality'] || 85),
+      thumbnailConvertWebp: String(app.data.settings?.['mie-files.thumbnail-convert-webp'] ?? '0') === '1',
     };
     this.pluginSettings = {
       orphanRetentionDays: Number(app.data.settings?.['mie-files.orphan-retention-days'] || 30),
@@ -220,9 +226,15 @@ export default class SettingsPage extends Component {
   imageManagement() {
     return (
       <section>
-        <h3>{app.translator.trans('mie-files.admin.image_settings')}</h3>
+        <h3>{app.translator.trans('mie-files.admin.thumbnail_settings')}</h3>
         <div className="Form-group">
           <label className="Checkbox"><input type="checkbox" checked={this.imageSettings.hotlinkProtection} onchange={(event) => { this.imageSettings.hotlinkProtection = event.target.checked; }} />{app.translator.trans('mie-files.admin.hotlink_protection')}</label>
+        </div>
+        <div className="Form-group MieFiles-cacheToggle">
+          <Switch state={this.imageSettings.thumbnailConvertWebp} onchange={(value) => { this.imageSettings.thumbnailConvertWebp = value; }}>
+            {app.translator.trans('mie-files.admin.thumbnail_convert_webp')}
+          </Switch>
+          <p className="helpText">{app.translator.trans('mie-files.admin.thumbnail_convert_webp_help')}</p>
         </div>
         {this.settingNumber(this.imageSettings, 'thumbnailWidth', 32, 4096)}
         {this.settingNumber(this.imageSettings, 'imageQuality', 1, 100, 'imageQuality_help')}
@@ -230,6 +242,7 @@ export default class SettingsPage extends Component {
           'mie-files.hotlink-protection': this.imageSettings.hotlinkProtection ? '1' : '0',
           'mie-files.thumbnail-width': String(this.imageSettings.thumbnailWidth),
           'mie-files.image-quality': String(this.imageSettings.imageQuality),
+          'mie-files.thumbnail-convert-webp': this.imageSettings.thumbnailConvertWebp ? '1' : '0',
         })}>{app.translator.trans('mie-files.admin.save_changes')}</Button>
       </section>
     );

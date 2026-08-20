@@ -50,7 +50,7 @@ export default class FileLibraryModal extends Modal {
   }
 
   fileTile(file) {
-    const image = /^image\//.test(file.mimeType);
+    const image = /^image\//i.test(file.mimeType || '');
     const selected = this.selectedIds.has(file.id);
     return (
       <article
@@ -62,7 +62,14 @@ export default class FileLibraryModal extends Modal {
           <input type="checkbox" checked={selected} onchange={() => this.toggle(file.id)} />
         </label>
         <div className="MieFiles-fileVisual">
-          {image ? <i className="fas fa-image" aria-hidden="true" /> : <i className="fas fa-file" aria-hidden="true" />}
+          {image && !file.thumbnailFailed ? (
+            <img
+              src={apiUrl(`/files/${encodeURIComponent(file.id)}/thumbnail`)}
+              alt={file.originalName}
+              loading="lazy"
+              onerror={() => { file.thumbnailFailed = true; m.redraw(); }}
+            />
+          ) : <i className={image ? 'fas fa-image' : 'fas fa-file'} aria-hidden="true" />}
         </div>
         <strong title={file.originalName}>{file.originalName}</strong>
         <span>{humanSize(file.size)}</span>

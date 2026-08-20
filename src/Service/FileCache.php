@@ -113,6 +113,12 @@ final class FileCache
                 return $stream;
             }
 
+            // A stale entry can block rename() on Windows. Remove it while
+            // holding the same key lock before creating the replacement.
+            if (file_exists($path) && !@unlink($path)) {
+                return null;
+            }
+
             $temporary = $path.'.'.bin2hex(random_bytes(8)).'.tmp';
             try {
                 $producer($temporary);
@@ -160,6 +166,7 @@ final class FileCache
         $size = @filesize($path);
 
         return $size !== false
+            && $size > 0
             && $size <= $this->maxFileBytes()
             && ($expectedSize === null || $size === $expectedSize);
     }
@@ -176,7 +183,7 @@ final class FileCache
         $removed = 0;
         $bytes = 0;
         foreach ($this->files($directory, true) as $file) {
-            if (str_ends_with($file, '.tmp') || (int) @filemtime($file) < $cutoff) {
+            if (str_ends_with($file, '.tmp') || !$this->validFile($file, null) || (int) @filemtime($file) < $cutoff) {
                 $size = max(0, (int) @filesize($file));
                 if ($this->removeLocked($file)) {
                     $removed++;
@@ -231,7 +238,9 @@ final class FileCache
                 return false;
             }
 
-            return !is_file($path) || @unlink($path);
+            @unlink($path);
+
+            return !is_file($path);
         } finally {
             @flock($lock, LOCK_UN);
             fclose($lock);
@@ -367,7 +376,11 @@ final class FileCache
     {
         $value = $this->settings->get($key, $default ? '1' : '0');
 
-        return !in_array($value, [false, null, '', '0', 0], true);
+        if (is_string($value)) {
+            return !in_array(strtolower(trim($value)), ['', '0', 'false', 'off', 'no'], true);
+        }
+
+        return (bool) $value;
     }
 
     private function settingInt(string $key, int $default, int $min, int $max): int

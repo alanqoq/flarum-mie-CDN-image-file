@@ -71,8 +71,10 @@ mie-files:
     direct_warning_title: 直链模式限制
     direct_link_warning: 公开直链发出后会绕过 PHP 下载统计、防盗链和逐次下载鉴权。
     direct_confirm: 我已理解并接受这些限制。
-    image_settings: 图片设置
+    thumbnail_settings: 缩略图设置
     hotlink_protection: 对有统计的中转传出拒绝跨站 Referer
+    thumbnail_convert_webp: 启用缩略图转换格式
+    thumbnail_convert_webp_help: 开启后，所有图片缩略图都会编码为 WebP；不会修改储存的原图。服务器必须提供 PHP GD WebP 编码支持。
     thumbnailWidth: 缩略图最大宽度（像素）
     imageQuality: 缩略图编码质量
     imageQuality_help: 仅影响“默认图片下载模板”生成的 JPEG、WebP 和 AVIF 缩略图，不会修改储存的原图。取值 1-100；数值越高通常画质和输出文件体积越大。PNG 和 GIF 不使用此设置。

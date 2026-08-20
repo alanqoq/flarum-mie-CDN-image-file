@@ -35,8 +35,8 @@
     "semantic_hash": "6b31c85a7a50051c1cbe95ccd0c9f15f"
   },
   "js/src/admin/components/SettingsPage.js": {
-    "mtime": 1787045149.6997938,
-    "ast_hash": "451709da8f6fa6744aea3f5b183400d9",
+    "mtime": 1787230275.1804516,
+    "ast_hash": "6cc56257b000be0374d6760c883d8b41",
     "semantic_hash": ""
   },
   "js/src/admin/components/StorageModal.js": {
@@ -75,9 +75,9 @@
     "semantic_hash": "362d5f4af1fb4c223752c4f8684456cc"
   },
   "js/src/forum/components/FileLibraryModal.js": {
-    "mtime": 1786730162.8579178,
-    "ast_hash": "04b3b48ecaf8d0eda2e3cd74b2807971",
-    "semantic_hash": "04b3b48ecaf8d0eda2e3cd74b2807971"
+    "mtime": 1787075196.3489473,
+    "ast_hash": "d2b3c0079b5f5dda78995ba81011951e",
+    "semantic_hash": ""
   },
   "js/src/forum/components/UploadModal.js": {
     "mtime": 1786730117.206656,
@@ -245,8 +245,8 @@
     "semantic_hash": "263f7f4e08f261bddcbefb6b2d1759bb"
   },
   "src/Service/DeliveryService.php": {
-    "mtime": 1787034354.860229,
-    "ast_hash": "bf8bd531fd165f3a68b4fa7d3bf53039",
+    "mtime": 1787252337.202487,
+    "ast_hash": "c41de4e5480f87d8c036e3c76850a9c4",
     "semantic_hash": ""
   },
   "src/Service/DogeCloudStorage.php": {
@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "src/Service/FileService.php": {
-    "mtime": 1787033600.197062,
-    "ast_hash": "70bc6a326fef8f553a6e2e5426bceff3",
+    "mtime": 1787227815.3024387,
+    "ast_hash": "93780aea6db16ab9c77f13cb0ec42a38",
     "semantic_hash": ""
   },
   "src/Service/LocalStorage.php": {
@@ -300,8 +300,8 @@
     "semantic_hash": ""
   },
   "src/Service/ThumbnailService.php": {
-    "mtime": 1787034354.860229,
-    "ast_hash": "716cc2647c3c864d272d7eaad2f83335",
+    "mtime": 1787252337.2044868,
+    "ast_hash": "021631b2b4acc6af0a689d52368cdfa9",
     "semantic_hash": ""
   },
   "src/Validator/CategoryValidator.php": {
@@ -335,23 +335,23 @@
     "semantic_hash": "98b8942b2968707dd1709c12555c37b1"
   },
   "README.md": {
-    "mtime": 1786995446.8464327,
-    "ast_hash": "f9051e1acffde648f641967d22cceafc",
+    "mtime": 1787227960.8878636,
+    "ast_hash": "4e183695d1737757a70e40064f329714",
     "semantic_hash": ""
   },
   "locale/en.yml": {
-    "mtime": 1787045149.7028103,
-    "ast_hash": "403ac57c3ef461a9c4b6a75de7433b39",
+    "mtime": 1787146001.8740182,
+    "ast_hash": "d164a828e68949e8bedad7eda0970e4c",
     "semantic_hash": ""
   },
   "locale/zh.yml": {
-    "mtime": 1787045149.7013128,
-    "ast_hash": "610739b3906ee14abad256514795cdc8",
+    "mtime": 1787146001.8750172,
+    "ast_hash": "f28305e5bd70f7bcb1d4a6bdd99f681c",
     "semantic_hash": ""
   },
   "docs/ARCHITECTURE.md": {
-    "mtime": 1786802053.4405947,
-    "ast_hash": "dda5240076818f6760832764e352c9e0",
+    "mtime": 1787227838.3764296,
+    "ast_hash": "2b029ee8ff3be200138d8921fd85c3fc",
     "semantic_hash": ""
   },
   "js/tests/admin/initializer.test.js": {
@@ -405,8 +405,8 @@
     "semantic_hash": ""
   },
   "js/tests/admin/cacheSettings.test.js": {
-    "mtime": 1787045149.7038107,
-    "ast_hash": "b0c3918f64789b6ee242df60a8052299",
+    "mtime": 1787230275.1819746,
+    "ast_hash": "e5a5e9dd11ccc074fc54fa6e27a6cc4e",
     "semantic_hash": ""
   },
   "js/tests/admin/storageDrivers.test.js": {
@@ -435,18 +435,23 @@
     "semantic_hash": ""
   },
   "src/Service/FileCache.php": {
-    "mtime": 1787034354.8582282,
-    "ast_hash": "4c862afa3860c5354746f4e41ab461a7",
+    "mtime": 1787228929.8365345,
+    "ast_hash": "ccbecaa0bdc615d801236a1c8f2f8fa9",
     "semantic_hash": ""
   },
   "tests/php/FileCacheTest.php": {
-    "mtime": 1787035003.0890324,
-    "ast_hash": "2b350db51a22b5ce827799950f13abeb",
+    "mtime": 1787227860.516431,
+    "ast_hash": "b5b5042ff901c55c1bab691dcf247360",
     "semantic_hash": ""
   },
   "tests/php/StorageFactoryTest.php": {
     "mtime": 1786998014.523188,
     "ast_hash": "34b0cc08bd872db193ecd66e6380288b",
+    "semantic_hash": ""
+  },
+  "tests/php/DeliveryServiceTest.php": {
+    "mtime": 1787252966.2661045,
+    "ast_hash": "a9fdca73cd473cdb4484b7b4bae2960c",
     "semantic_hash": ""
   }
 }

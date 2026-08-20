@@ -62,7 +62,13 @@ final class FileService
     {
         try {
             $this->storages->make($file->storage_name)->delete($file->object_key);
-            $this->cache->forgetFile($file->storage_name, $file->object_key);
+            // The cache is derived data. A filesystem failure must not leave a
+            // successfully deleted remote object stuck in delete_failed state;
+            // the scheduled cache cleaner can remove the leftover copy.
+            try {
+                $this->cache->forgetFile($file->storage_name, $file->object_key);
+            } catch (\Throwable) {
+            }
             $file->posts()->detach();
             $file->delete();
         } catch (\Throwable $exception) {

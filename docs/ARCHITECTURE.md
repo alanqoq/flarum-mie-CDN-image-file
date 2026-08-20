@@ -40,11 +40,21 @@ availability and category permission before returning either an authenticated
 proxy URL or a configured direct object-storage URL. `ProxyController` uses the
 same service to stream proxied content and record tracked deliveries.
 
+When proxy delivery targets a remote storage, `DeliveryService` asks `FileCache`
+for a local read-through copy after authorization. Cache entries use hashed
+paths, atomic temporary-file renames, per-entry locks, last-access timestamps,
+and size/retention limits. Cache failures fall back to the storage stream. The
+`mie-files:clean-cache` command removes expired entries and enforces the LRU
+capacity limits daily.
+
 ### Post associations and cleanup
 
 Flarum post events invoke `SyncPostFiles`, which delegates association updates
 to `PostFileSync`. `CleanOrphansCommand` runs daily and uses `OrphanCleaner` to
 remove successful, unreferenced files after the configured retention period.
+Deleting a file also removes its original-object cache and any cached thumbnail
+variants; a cache filesystem failure does not prevent removal of the source
+object or database record.
 
 ## Local code map
 

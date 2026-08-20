@@ -67,6 +67,49 @@ final class FileCacheTest extends TestCase
         self::assertSame([], $this->cacheFiles());
     }
 
+    public function testEmptyProducedValueIsNotCached(): void
+    {
+        $stream = $this->cache->openThumbnail('remote', 'objects/empty.png', 480, 85, 'image/png', static function (string $target): void {
+            file_put_contents($target, '');
+        });
+
+        self::assertNull($stream);
+        self::assertSame([], $this->cacheFiles());
+    }
+
+    public function testInvalidExistingEntryCanBeReplaced(): void
+    {
+        $stream = $this->cache->openObject('remote', 'objects/replaced.txt', 4, static fn (string $target) => file_put_contents($target, 'good'));
+        self::assertIsResource($stream);
+        fclose($stream);
+        $entry = $this->cacheFiles()[0];
+        file_put_contents($entry, 'bad');
+
+        $calls = 0;
+        $stream = $this->cache->openObject('remote', 'objects/replaced.txt', 4, static function (string $target) use (&$calls): void {
+            $calls++;
+            file_put_contents($target, 'good');
+        });
+
+        self::assertIsResource($stream);
+        self::assertSame('good', stream_get_contents($stream));
+        fclose($stream);
+        self::assertSame(1, $calls);
+    }
+
+    public function testCommonFalseSettingValuesDisableTheCache(): void
+    {
+        $cache = new FileCache($this->settings(['mie-files.cache-enabled' => 'false']), $this->root);
+        $calls = 0;
+        $stream = $cache->openObject('remote', 'objects/disabled.txt', 4, static function (string $target) use (&$calls): void {
+            $calls++;
+            file_put_contents($target, 'body');
+        });
+
+        self::assertNull($stream);
+        self::assertSame(0, $calls);
+    }
+
     public function testCleanRemovesExpiredEntriesByLastAccessTime(): void
     {
         $cache = new FileCache($this->settings(['mie-files.cache-retention-days' => '1']), $this->root);
